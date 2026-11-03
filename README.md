@@ -1,6 +1,6 @@
 # HUB 3DS·A - Portal del Año
 
-- **URL Pública:** hhttps://github.com/NicoleJesy/hub-3ds-a.git
+- **URL Pública:** https://github.com/NicoleJesy/hub-3ds-a.git
 - **Versión:** v0.2 (Día 1)
 
 ## Integrantes y Roles
