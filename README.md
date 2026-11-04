@@ -48,6 +48,10 @@ La revisión cruzada permitió validar que el contenido, el comportamiento y la 
 | BTVD3 3.7 | Puesta en marcha de la microempresa en asociatividad cooperativa | Julio Portillo |
 | BTVD3 3.8 | Proyecto innovador de desarrollo de software | Javier Mineros |
 
+## 🔧 Proyecto práctico destacado
+
+El portal también presenta el semáforo sencillo construido con LEDs, Arduino Uno y protoboard, con la secuencia de luces programada desde Arduino IDE.
+
 ---
 
 ## 📍 Estructura del proyecto
