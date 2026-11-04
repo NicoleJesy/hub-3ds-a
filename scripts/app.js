@@ -1,23 +1,12 @@
-/**
- * scripts/app.js
- * ---------------------------------------------------------------------------
- * Lógica del portal "Memoria 3DSA":
- *   · Pinta el grid de módulos desde data/modulos.js.
- *   · Abre y cierra el modal de ficha (botón, Escape y clic fuera).
- *   · Anima la entrada de los elementos con IntersectionObserver.
- *   · Resalta el enlace activo de la navegación y el estado de la cabecera.
- *
- * No usa frameworks ni dependencias externas.
- * ---------------------------------------------------------------------------
- */
+﻿import { MODULOS } from "../data/modulos.js";
 
-import { MODULOS } from "../data/modulos.js";
+const STORAGE_KEY = "hub-3dsa:progreso";
+const estado = {
+  busqueda: "",
+  docente: "todos",
+  repasados: {},
+};
 
-/* ==========================================================================
-   Utilidades
-   ========================================================================== */
-
-/** Escapa texto antes de insertarlo como HTML. */
 const escaparHTML = (valor = "") =>
   String(valor).replace(/[&<>"']/g, (caracter) => {
     const mapa = {
@@ -30,11 +19,15 @@ const escaparHTML = (valor = "") =>
     return mapa[caracter];
   });
 
-/** Devuelve un color hexadecimal seguro (evita inyectar CSS desde los datos). */
+const normalizarTexto = (valor = "") =>
+  String(valor)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
 const colorSeguro = (color) =>
   /^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(color || "") ? color : "var(--acento)";
 
-/** Devuelve la URL solo si es http(s); en caso contrario, null. */
 const urlSegura = (url) => {
   try {
     const parseada = new URL(url);
@@ -44,7 +37,6 @@ const urlSegura = (url) => {
   }
 };
 
-/** Iniciales de un nombre: "Javier Mineros" → "JM". */
 const iniciales = (nombre = "") =>
   nombre
     .trim()
@@ -54,10 +46,35 @@ const iniciales = (nombre = "") =>
     .map((parte) => parte.charAt(0).toUpperCase())
     .join("");
 
-/** Número con dos dígitos: 1 → "01". */
 const dosDigitos = (numero) => String(numero).padStart(2, "0");
+const contarRepasados = () =>
+  MODULOS.filter((modulo) => Boolean(estado.repasados[modulo.id])).length;
 
-/** Icono de flecha externa reutilizable. */
+const leerProgreso = () => {
+  try {
+    const valor = localStorage.getItem(STORAGE_KEY);
+    if (!valor) return {};
+    const datos = JSON.parse(valor);
+    return datos && typeof datos === "object" ? datos : {};
+  } catch {
+    return {};
+  }
+};
+
+const guardarProgreso = () => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(estado.repasados));
+  } catch {
+    // localStorage bloqueado: no rompe la experiencia.
+  }
+};
+
+estado.repasados = leerProgreso();
+
+const grid = document.querySelector("#grid-modulos");
+const modal = document.querySelector("#modal-ficha");
+const cabecera = document.querySelector("#cabecera");
+
 const iconoFlechaExterna = `
   <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
     <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor"
@@ -70,39 +87,118 @@ const iconoFlechaDiagonal = `
       stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
   </svg>`;
 
-/* ==========================================================================
-   Referencias del DOM
-   ========================================================================== */
+const crearSeccion = (titulo, contenido) => `
+  <section class="modal-seccion">
+    <h3 class="modal-subtitulo">${titulo}</h3>
+    ${contenido}
+  </section>`;
 
-const grid = document.querySelector("#grid-modulos");
-const modal = document.querySelector("#modal-ficha");
-const cabecera = document.querySelector("#cabecera");
+const crearColumna = (titulo, elementos = []) => `
+  <section class="modal-columna">
+    <h3 class="modal-subtitulo">
+      ${titulo}
+      <span class="modal-subtitulo-conteo">${dosDigitos(elementos.length)}</span>
+    </h3>
+    <ul class="lista-simple">
+      ${elementos.map((elemento) => `<li>${escaparHTML(elemento)}</li>`).join("")}
+    </ul>
+  </section>`;
 
-/* ==========================================================================
-   Render del grid de módulos
-   ========================================================================== */
+function obtenerModulosFiltrados() {
+  const consulta = normalizarTexto(estado.busqueda).trim();
 
-/**
- * Construye el HTML de una tarjeta.
- * @param {object} modulo
- * @param {number} indice
- * @returns {string}
- */
+  return MODULOS.filter((modulo) => {
+    const docentes = modulo.docente.split("/").map((docente) => docente.trim());
+    const docenteCoincide = estado.docente === "todos" || docentes.includes(estado.docente);
+    if (!docenteCoincide) return false;
+    if (!consulta) return true;
+
+    const textoBusqueda = [
+      modulo.codigo,
+      modulo.nombre,
+      modulo.resumen,
+      modulo.docente,
+      ...(modulo.programas || []),
+      ...(modulo.herramientas || []),
+      ...(modulo.keywords || []),
+    ].join(" ");
+
+    return normalizarTexto(textoBusqueda).includes(consulta);
+  });
+}
+
+function actualizarToolbar() {
+  const contador = document.querySelector("#contador-modulos");
+  const buscador = document.querySelector("#buscador-modulos");
+  const limpiar = document.querySelector("#limpiar-filtros");
+
+  if (buscador) buscador.value = estado.busqueda;
+
+  const filtrados = obtenerModulosFiltrados();
+  if (contador) {
+    contador.textContent = `Mostrando ${filtrados.length} de ${MODULOS.length} módulos`;
+  }
+
+  if (limpiar) {
+    limpiar.hidden = !(estado.busqueda.trim() || estado.docente !== "todos");
+  }
+
+  document.querySelectorAll(".chip-docente").forEach((chip) => {
+    const activo = chip.dataset.docente === estado.docente;
+    chip.classList.toggle("activo", activo);
+    chip.setAttribute("aria-pressed", String(activo));
+  });
+}
+
+function actualizarProgreso() {
+  const total = MODULOS.length;
+  const repasados = contarRepasados();
+  const porcentaje = total === 0 ? 0 : Math.round((repasados / total) * 100);
+
+  const relleno = document.querySelector("#progreso-relleno");
+  const barra = document.querySelector("#barra-progreso");
+  const porcentajeTexto = document.querySelector("#progreso-porcentaje");
+  const meta = document.querySelector("#progreso-meta");
+  const contenedor = document.querySelector(".progreso-modulos");
+
+  if (relleno) relleno.style.width = `${porcentaje}%`;
+  if (barra) {
+    barra.setAttribute("aria-valuenow", String(repasados));
+    barra.setAttribute("aria-valuemax", String(total));
+  }
+  if (porcentajeTexto) porcentajeTexto.textContent = `${porcentaje}%`;
+  if (meta) meta.textContent = `${repasados} de ${total} módulos repasados`;
+  if (contenedor) contenedor.classList.toggle("completo", porcentaje >= 100 && total > 0);
+
+  document.querySelectorAll("[data-total-modulos]").forEach((elemento) => {
+    elemento.textContent = dosDigitos(total);
+  });
+
+  const docentes = new Set(
+    MODULOS.flatMap((modulo) => modulo.docente.split("/").map((docente) => docente.trim()))
+  );
+  document.querySelectorAll("[data-total-docentes]").forEach((elemento) => {
+    elemento.textContent = dosDigitos(docentes.size);
+  });
+}
+
 function crearTarjeta(modulo, indice) {
   const nombre = escaparHTML(modulo.nombre);
   const color = colorSeguro(modulo.color);
   const instrumentos = Array.isArray(modulo.instrumentos) ? modulo.instrumentos.length : 0;
   const programas = Array.isArray(modulo.programas) ? modulo.programas.length : 0;
   const herramientas = Array.isArray(modulo.herramientas) ? modulo.herramientas.length : 0;
+  const estaRepasado = Boolean(estado.repasados[modulo.id]);
 
   return `
-    <article class="tarjeta-modulo"
+    <article class="tarjeta-modulo ${estaRepasado ? "tarjeta-modulo--repasado" : ""}"
              style="--acento-modulo: ${color}; --retraso: ${indice * 70}ms">
+      ${estaRepasado ? '<span class="tarjeta-badge">✓ Repasado</span>' : ""}
       <div class="tarjeta-cabecera">
         <span class="tarjeta-icono" role="img" aria-label="Icono del módulo ${nombre}">
           ${escaparHTML(modulo.icono)}
         </span>
-        <span class="tarjeta-numero" aria-hidden="true">${dosDigitos(indice + 1)}</span>
+        <span class="tarjeta-numero" aria-label="Código ${escaparHTML(modulo.codigo)}">${escaparHTML(modulo.codigo)}</span>
       </div>
 
       <h3 class="tarjeta-titulo">
@@ -130,75 +226,67 @@ function crearTarjeta(modulo, indice) {
         </p>
         <span class="tarjeta-flecha" aria-hidden="true">${iconoFlechaDiagonal}</span>
       </div>
+
+      <button class="tarjeta-repasar ${estaRepasado ? "is-activo" : ""}" type="button"
+              data-toggle-repasado data-modulo="${escaparHTML(modulo.id)}" aria-pressed="${String(estaRepasado)}">
+        <span class="repasar-icono" aria-hidden="true">${estaRepasado ? "✓" : "○"}</span>
+        <span>${estaRepasado ? "Repasado" : "Repasar"}</span>
+      </button>
     </article>`;
 }
 
-/** Pinta todas las tarjetas y actualiza los contadores del hero. */
+function mostrarToast() {
+  const toast = document.querySelector("#toast-celebracion");
+  if (!toast) return;
+
+  toast.hidden = false;
+  toast.classList.add("visible");
+
+  window.clearTimeout(toast.timerId);
+  toast.timerId = window.setTimeout(() => {
+    toast.classList.remove("visible");
+    window.setTimeout(() => {
+      toast.hidden = true;
+    }, 240);
+  }, 5000);
+}
+
 function renderModulos() {
   if (!grid) return;
 
-  // Marca de éxito para el aviso de respaldo del HTML (file:// o red lenta).
   window.MEMORIA_3DSA_OK = true;
   const avisoCarga = document.querySelector("#aviso-carga");
   if (avisoCarga) avisoCarga.hidden = true;
 
-  if (!Array.isArray(MODULOS) || MODULOS.length === 0) {
+  const filtrados = obtenerModulosFiltrados();
+
+  if (filtrados.length === 0) {
+    const consulta = estado.busqueda.trim() || "los filtros actuales";
     grid.innerHTML = `
-      <div class="aviso-carga">
-        <p class="aviso-carga-titulo">Todavía no hay módulos</p>
-        <p>Agrega el primer objeto al arreglo <code>MODULOS</code> en
-        <code>data/modulos.js</code> y aparecerá aquí automáticamente.</p>
+      <div class="estado-vacio" role="status" aria-live="polite">
+        <span class="estado-vacio-emoji" aria-hidden="true">🔎</span>
+        <p class="estado-vacio-titulo">No encontramos módulos con «${escaparHTML(consulta)}»</p>
+        <button class="boton-vaciar" type="button" data-limpiar-filtros>Limpiar filtros</button>
       </div>`;
     grid.setAttribute("aria-busy", "false");
+    actualizarToolbar();
+    actualizarProgreso();
     return;
   }
 
-  grid.innerHTML = MODULOS.map(crearTarjeta).join("");
+  grid.innerHTML = filtrados.map(crearTarjeta).join("");
   grid.setAttribute("aria-busy", "false");
 
-  // Contadores del hero calculados desde los datos.
-  const totalModulos = dosDigitos(MODULOS.length);
-  const totalDocentes = dosDigitos(new Set(MODULOS.map((modulo) => modulo.docente)).size);
-
-  document.querySelectorAll("[data-total-modulos]").forEach((elemento) => {
-    elemento.textContent = totalModulos;
-  });
-  document.querySelectorAll("[data-total-docentes]").forEach((elemento) => {
-    elemento.textContent = totalDocentes;
-  });
+  actualizarToolbar();
+  actualizarProgreso();
 }
 
-/* ==========================================================================
-   Ficha dentro del modal
-   ========================================================================== */
-
-/** Crea una sección con título y contenido HTML. */
-const crearSeccion = (titulo, contenido) => `
-  <section class="modal-seccion">
-    <h3 class="modal-subtitulo">${titulo}</h3>
-    ${contenido}
-  </section>`;
-
-/** Crea una columna (instrumentos, programas o herramientas). */
-const crearColumna = (titulo, elementos = []) => `
-  <section class="modal-columna">
-    <h3 class="modal-subtitulo">
-      ${titulo}
-      <span class="modal-subtitulo-conteo">${dosDigitos(elementos.length)}</span>
-    </h3>
-    <ul class="lista-simple">
-      ${elementos.map((elemento) => `<li>${escaparHTML(elemento)}</li>`).join("")}
-    </ul>
-  </section>`;
-
-/** Construye el contenido completo de la ficha de un módulo. */
-function crearContenidoFicha(modulo) {
+const crearContenidoFicha = (modulo) => {
   const recursos = (modulo.recursos || [])
     .map((recurso) => {
       const url = urlSegura(recurso.url);
       if (!url) return "";
       const host = url.hostname.replace(/^www\./, "");
-
       return `
         <li>
           <a class="recurso-enlace" href="${escaparHTML(url.href)}"
@@ -258,7 +346,17 @@ function crearContenidoFicha(modulo) {
     )
     .join("");
 
+  const estaRepasado = Boolean(estado.repasados[modulo.id]);
+
   return `
+    <div class="modal-acciones">
+      <button class="boton-repasar ${estaRepasado ? "is-activo" : ""}" type="button"
+              data-toggle-repasado data-modulo="${escaparHTML(modulo.id)}" aria-pressed="${String(estaRepasado)}">
+        <span class="repasar-icono" aria-hidden="true">${estaRepasado ? "✓" : "○"}</span>
+        <span>${estaRepasado ? "Repasado" : "Repasar"}</span>
+      </button>
+    </div>
+
     <p class="modal-resumen">${escaparHTML(modulo.resumen)}</p>
 
     ${crearSeccion(
@@ -278,7 +376,7 @@ function crearContenidoFicha(modulo) {
 
     ${crearSeccion("Recursos para seguir", `<ul class="lista-recursos">${recursos}</ul>`)}
 
-    ${crearSeccion("Evidencias", `<ul class="lista-evidencias">${evidencias}</ul>`)}
+    ${crearSeccion("Evidencias", `<ul class="lista-evidencias">${evidencias}</ul>`) }
 
     ${crearSeccion(
       "Quiz de repaso",
@@ -286,9 +384,8 @@ function crearContenidoFicha(modulo) {
        <p class="quiz-nota">Versión de lectura: el quiz interactivo con
        retroalimentación llega en la próxima actualización.</p>`
     )}`;
-}
+};
 
-/** Rellena la cabecera y el cuerpo del modal con los datos del módulo. */
 function rellenarFicha(modulo) {
   if (!modal) return;
 
@@ -308,16 +405,31 @@ function rellenarFicha(modulo) {
   if (cuerpo) cuerpo.innerHTML = crearContenidoFicha(modulo);
 }
 
-/* ==========================================================================
-   Apertura y cierre del modal
-   ========================================================================== */
-
 let disparadorActivo = null;
 
 const bloquearScroll = (bloquear) => {
   document.documentElement.classList.toggle("sin-scroll", bloquear);
   document.body.classList.toggle("sin-scroll", bloquear);
 };
+
+function alternarRepasado(idModulo) {
+  const antes = contarRepasados();
+  const estabaMarcado = Boolean(estado.repasados[idModulo]);
+  estado.repasados[idModulo] = !estabaMarcado;
+  guardarProgreso();
+  const despues = contarRepasados();
+
+  if (despues === MODULOS.length && antes !== MODULOS.length) {
+    mostrarToast();
+  }
+
+  renderModulos();
+
+  if (modal && modal.open) {
+    const moduloActual = MODULOS.find((modulo) => modulo.id === idModulo);
+    if (moduloActual) rellenarFicha(moduloActual);
+  }
+}
 
 function abrirModal(idModulo, disparador) {
   if (!modal) return;
@@ -332,7 +444,7 @@ function abrirModal(idModulo, disparador) {
   if (typeof modal.showModal === "function") {
     if (!modal.open) modal.showModal();
   } else {
-    modal.setAttribute("open", "");
+    modal.setAttribute("open", "open");
   }
 
   const botonCerrar = modal.querySelector("#modal-cerrar");
@@ -354,23 +466,26 @@ function cerrarModal() {
   if (!modal) return;
 
   if (typeof modal.close === "function" && modal.open) {
-    modal.close(); // dispara el evento "close" → finalizarCierre()
+    modal.close();
   } else {
     modal.removeAttribute("open");
     finalizarCierre();
   }
 }
 
-/** Conecta todos los eventos del modal. */
 function iniciarModal() {
   if (!modal) return;
 
   modal.addEventListener("close", finalizarCierre);
-
   modal.querySelector("#modal-cerrar")?.addEventListener("click", cerrarModal);
 
-  // Clic fuera del panel (en el backdrop del <dialog>).
   modal.addEventListener("click", (evento) => {
+    const toggle = evento.target.closest("[data-toggle-repasado]");
+    if (toggle) {
+      alternarRepasado(toggle.dataset.modulo);
+      return;
+    }
+
     if (evento.target !== modal) return;
 
     const caja = modal.getBoundingClientRect();
@@ -382,27 +497,57 @@ function iniciarModal() {
 
     if (fueraDelPanel) cerrarModal();
   });
-
-  // Escape: el <dialog> lo maneja de forma nativa; el evento close limpia todo.
 }
 
-/* ==========================================================================
-   Interacción con las tarjetas
-   ========================================================================== */
+function iniciarToolbar() {
+  const buscador = document.querySelector("#buscador-modulos");
+  if (buscador) {
+    buscador.addEventListener("input", (evento) => {
+      estado.busqueda = evento.target.value;
+      renderModulos();
+    });
+  }
+
+  document.querySelectorAll(".chip-docente").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      estado.docente = chip.dataset.docente || "todos";
+      renderModulos();
+    });
+  });
+
+  document.querySelectorAll("[data-limpiar-filtros]").forEach((boton) => {
+    boton.addEventListener("click", () => {
+      estado.busqueda = "";
+      estado.docente = "todos";
+      renderModulos();
+    });
+  });
+}
 
 function iniciarTarjetas() {
   if (!grid) return;
 
   grid.addEventListener("click", (evento) => {
+    const botonRepasar = evento.target.closest("[data-toggle-repasado]");
+    if (botonRepasar) {
+      alternarRepasado(botonRepasar.dataset.modulo);
+      return;
+    }
+
     const boton = evento.target.closest(".tarjeta-disparador");
-    if (!boton) return;
-    abrirModal(boton.dataset.modulo, boton);
+    if (boton) {
+      abrirModal(boton.dataset.modulo, boton);
+      return;
+    }
+
+    const limpiar = evento.target.closest("[data-limpiar-filtros]");
+    if (limpiar) {
+      estado.busqueda = "";
+      estado.docente = "todos";
+      renderModulos();
+    }
   });
 }
-
-/* ==========================================================================
-   Animación de entrada (IntersectionObserver con stagger)
-   ========================================================================== */
 
 function iniciarRevelado() {
   const elementos = document.querySelectorAll(".revelar");
@@ -426,10 +571,6 @@ function iniciarRevelado() {
 
   elementos.forEach((elemento) => observador.observe(elemento));
 }
-
-/* ==========================================================================
-   Cabecera y navegación activa
-   ========================================================================== */
 
 function iniciarCabecera() {
   if (!cabecera) return;
@@ -473,12 +614,9 @@ function iniciarNavegacionActiva() {
   secciones.forEach((seccion) => observador.observe(seccion));
 }
 
-/* ==========================================================================
-   Arranque
-   ========================================================================== */
-
 function iniciar() {
   renderModulos();
+  iniciarToolbar();
   iniciarTarjetas();
   iniciarModal();
   iniciarRevelado();

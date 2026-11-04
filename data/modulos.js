@@ -1,439 +1,357 @@
-/**
- * data/modulos.js
- * ---------------------------------------------------------------------------
- * Fuente única de verdad del portal "Memoria 3DSA".
- *
- * Cada objeto de este arreglo se transforma automáticamente en una tarjeta
- * del grid y en una ficha dentro del modal. Para publicar un módulo nuevo
- * basta con agregar un objeto aquí: no hay que tocar el HTML.
- *
- * Esquema:
- * {
- *   id:          string   → slug único (sin espacios, en minúsculas)
- *   nombre:      string   → nombre visible del módulo
- *   docente:     string   → "Javier Mineros" | "Arcides Canales"
- *   icono:       string   → emoji representativo
- *   color:       string   → acento propio del módulo (hex)
- *   resumen:     string   → 2 o 3 líneas con palabras propias
- *   aprendiste:  string[] → ideas clave del módulo
- *   instrumentos:string[] → instrumentos de evaluación (mín. 2)
- *   programas:   string[] → software utilizado (mín. 2)
- *   herramientas:string[] → tecnologías / herramientas (mín. 2)
- *   recursos:    {nombre, url}[] → mínimo 3 enlaces reales
- *   evidencias:  string[] → productos entregados (mín. 1)
- *   quiz:        {pregunta, opciones, correcta, explicacion}[] → 3 preguntas
- * }
- * ---------------------------------------------------------------------------
- */
-
-export const MODULOS = [
+﻿export const MODULOS = [
   {
-    id: "introduccion-desarrollo-logica",
-    nombre: "Introducción al Desarrollo y Lógica",
-    docente: "Javier Mineros",
-    icono: "🧠",
-    color: "#e8b14a",
-    resumen:
-      "Antes de escribir una sola línea de código aprendimos a pensar: descomponer problemas, ordenar pasos y representar la lógica con diagramas y pseudocódigo.",
+    id: 'orientacion-estudiantes',
+    codigo: 'BTVD3 3.0',
+    nombre: 'Orientación a los estudiantes al proceso educativo',
+    docente: 'Julio Portillo',
+    icono: '🎓',
+    color: '#e8b14a',
+    resumen: 'Espacio de orientación para acompañar al estudiantado durante el proceso educativo y fortalecer su participación en la formación técnica.',
     aprendiste: [
-      "Pensamiento lógico y descomposición de problemas",
-      "Diagramas de flujo y pseudocódigo",
-      "Resolución ordenada de problemas",
+      'Reconocer la importancia de participar activamente en el proceso educativo.',
+      'Identificar apoyos y responsabilidades relacionados con la formación.',
+      'Valorar la organización y el compromiso como parte del aprendizaje.'
     ],
-    instrumentos: ["Guías de ejercicios", "Pruebas prácticas de código"],
-    programas: ["VS Code", "Editores de texto plano"],
-    herramientas: ["Consola de comandos", "Diagramas de flujo", "Pseudocódigo"],
+    instrumentos: ['Actividades de reflexión', 'Guías de orientación'],
+    programas: ['Materiales de apoyo educativo'],
+    herramientas: ['Trabajo individual y colaborativo'],
+    keywords: ['BTVD3 3.0', 'orientacion', 'estudiantes', 'proceso educativo'],
     recursos: [
-      { nombre: "MDN Learn JavaScript", url: "https://developer.mozilla.org/es/docs/Learn/JavaScript" },
-      { nombre: "roadmap.sh", url: "https://roadmap.sh/" },
-      { nombre: "freeCodeCamp en español", url: "https://www.freecodecamp.org/espanol/" },
+      { nombre: 'UNESCO — Educación', url: 'https://www.unesco.org/es/education' }
     ],
-    evidencias: ["Ejercicios de lógica resueltos", "Capturas de diagramas de flujo"],
+    evidencias: ['Actividades y reflexiones desarrolladas durante el módulo.'],
     quiz: [
       {
-        pregunta: "¿Qué es un algoritmo?",
-        opciones: [
-          "Una secuencia ordenada de pasos para resolver un problema",
-          "Un lenguaje de programación",
-          "Un tipo de base de datos",
-        ],
+        pregunta: '¿Qué favorece la participación activa en el proceso educativo?',
+        opciones: ['El compromiso con el aprendizaje', 'Evitar las actividades', 'Dejar toda la responsabilidad al docente'],
         correcta: 0,
-        explicacion:
-          "Es la definición formal: un conjunto finito y ordenado de pasos que permite resolver un problema.",
-      },
-      {
-        pregunta: "¿Qué estructura repite un bloque de código?",
-        opciones: ["Condicional", "Bucle (for, while)", "Función"],
-        correcta: 1,
-        explicacion:
-          "Los bucles (for, while) repiten instrucciones mientras se cumpla una condición.",
-      },
-      {
-        pregunta: "¿Qué símbolo representa una decisión en un diagrama de flujo?",
-        opciones: ["Rectángulo", "Rombo", "Círculo"],
-        correcta: 1,
-        explicacion:
-          "El rombo es el símbolo normalizado para decisiones; el rectángulo representa procesos.",
-      },
-    ],
+        explicacion: 'La participación y el compromiso ayudan a aprovechar mejor la formación.'
+      }
+    ]
   },
-
   {
-    id: "bases-de-datos-relacionales",
-    nombre: "Bases de Datos Relacionales (T-SQL y Normalización)",
-    docente: "Javier Mineros",
-    icono: "🗄️",
-    color: "#7aa2f7",
-    resumen:
-      "Diseñamos bases de datos desde el modelo entidad-relación hasta el script final, aplicando 1FN, 2FN, 3FN y BCNF, y consultando la información con T-SQL.",
+    id: 'solucion-problemas-logica',
+    codigo: 'BTVD3 3.1',
+    nombre: 'Desarrollo de Aplicaciones de Software para la Solución de Problemas',
+    docente: 'Arcides Canales',
+    icono: '🧠',
+    color: '#e8b14a',
+    resumen: 'Módulo de inicio donde aprendimos a analizar problemas cotidianos y transformarlos en soluciones lógicas. Diseñamos diagramas de flujo, escribimos pseudocódigo y probamos la lógica mediante ejercicios ejecutados en consola.',
     aprendiste: [
-      "Modelo entidad-relación",
-      "Normalización hasta BCNF",
-      "Consultas y scripts en SQL",
+      'Todo problema complejo se resuelve dividiéndolo en pasos lógicos ordenados.',
+      'Los diagramas de flujo y el pseudocódigo son la representación gráfica y estructural del programa.',
+      'La consola es el medio primario para validar la lógica antes de programar en entornos complejos.'
     ],
-    instrumentos: ["Diagramas Entidad-Relación", "Scripts SQL", "Rúbricas de proyecto"],
-    programas: ["SQL Server Management Studio", "phpMyAdmin", "XAMPP (MySQL)"],
-    herramientas: ["Transact-SQL", "MySQL", "Gestores de bases de datos"],
+    instrumentos: ['Guías de ejercicios de lógica de programación', 'Pruebas prácticas de código en consola'],
+    programas: ['VS Code', 'Consola del sistema operativo'],
+    herramientas: ['Diagramas de flujo', 'Pseudocódigo'],
+    keywords: ['modulo 1', 'logica', 'algoritmo', 'pseudocodigo', 'diagrama de flujo', 'solucion de problemas', 'consola', 'python'],
     recursos: [
-      { nombre: "Microsoft Learn · SQL", url: "https://learn.microsoft.com/es-es/sql/" },
-      { nombre: "W3Schools SQL", url: "https://www.w3schools.com/sql/" },
-      { nombre: "SQLBolt", url: "https://sqlbolt.com/" },
+      { nombre: 'MDN — Learn', url: 'https://developer.mozilla.org/es/docs/Learn' },
+      { nombre: 'MDN — JavaScript Guide', url: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Guide' },
+      { nombre: 'Python — Tutorial', url: 'https://docs.python.org/es/3/tutorial/' }
     ],
-    evidencias: ["Scripts SQL del Vivero", "Diagrama ER del proyecto"],
+    evidencias: ['Carpeta con guías de ejercicios resueltos y capturas de diagramas de flujo.'],
     quiz: [
       {
-        pregunta: "¿Qué significa BCNF?",
-        opciones: [
-          "Boyce-Codd Normal Form",
-          "Basic Column Normal Form",
-          "Binary Code Normal Form",
-        ],
+        pregunta: '¿Qué representa un diagrama de flujo en programación?',
+        opciones: ['La secuencia gráfica de pasos de un algoritmo', 'Un tipo de lenguaje de programación', 'El diseño visual de una base de datos'],
         correcta: 0,
-        explicacion:
-          "Es la forma normal de Boyce-Codd, una versión más estricta de la tercera forma normal.",
+        explicacion: 'Cada figura geométrica estandarizada (óvalo, rectángulo, rombo) representa una acción o decisión dentro del proceso.'
       },
       {
-        pregunta: "¿Qué comando SQL consulta datos?",
-        opciones: ["GET", "SELECT", "FETCH"],
+        pregunta: '¿Qué estructura repite una serie de instrucciones mientras se cumpla una condición?',
+        opciones: ['if', 'while', 'switch'],
         correcta: 1,
-        explicacion:
-          "SELECT es la instrucción que recupera filas y columnas de una o varias tablas.",
+        explicacion: 'El while evalúa la condición al inicio y ejecuta el bloque repetidamente mientras dicha condición sea verdadera.'
       },
       {
-        pregunta: "¿Qué representa una relación 1:N?",
-        opciones: [
-          "Un registro de una tabla se relaciona con muchos de otra",
-          "Dos tablas sin relación",
-          "Un registro con un solo campo",
-        ],
+        pregunta: '¿Cuál es la función del pseudocódigo?',
+        opciones: ['Compilar el programa', 'Ejecutarse en el navegador', 'Diseñar y probar la lógica sin depender de la sintaxis de un lenguaje real'],
+        correcta: 2,
+        explicacion: 'Permite enfocarse en la resolución del problema sin distracciones de errores de compilación o sintaxis.'
+      }
+    ]
+  },
+  {
+    id: 'componentes-moviles',
+    codigo: 'BTVD3 3.5',
+    nombre: 'Desarrollo de componentes para dispositivos móviles',
+    docente: 'Arcides Canales',
+    icono: '📱',
+    color: '#f2b66d',
+    resumen: 'Aprendimos a estructurar y construir componentes para aplicaciones móviles. Diseñamos interfaces adaptadas a pantallas táctiles, manejamos la navegación entre pantallas y conectamos eventos de usuario en entornos móviles.',
+    aprendiste: [
+      'El diseño de software móvil requiere interfaces limpias y adaptables a distintas resoluciones.',
+      'Los componentes visuales (botones, listas, formularios) se gestionan mediante eventos del usuario.',
+      'Desarrollar para móviles implica considerar la eficiencia de memoria y procesamiento del dispositivo.'
+    ],
+    instrumentos: ['Rúbrica de evaluación de interfaz móvil', 'Lista de cotejo de componentes visuales'],
+    programas: ['Android Studio / VS Code', 'Emulador de dispositivo móvil'],
+    herramientas: ['Lenguaje de desarrollo móvil (Java/Kotlin/Flutter/React Native)', 'Layouts de interfaz'],
+    keywords: ['modulo 2', 'moviles', 'aplicaciones moviles', 'componentes', 'android', 'ui movil', 'interfaz'],
+    recursos: [
+      { nombre: 'Android Developers Docs', url: 'https://developer.android.com/docs' },
+      { nombre: 'MDN — Responsive Web Design', url: 'https://developer.mozilla.org/es/docs/Learn/CSS/CSS_layout/Responsive_Design' },
+      { nombre: 'Flutter Docs', url: 'https://docs.flutter.dev/' }
+    ],
+    evidencias: ['Capturas del emulador ejecutando la aplicación móvil y repositorio con el código fuente.'],
+    quiz: [
+      {
+        pregunta: '¿Por qué es importante diseñar interfaces adaptables en dispositivos móviles?',
+        opciones: ['Porque todos los teléfonos son iguales', 'Porque existe una gran variedad de tamaños y resoluciones de pantalla', 'Porque así lo exige Android'],
+        correcta: 1,
+        explicacion: 'La interfaz debe reajustar sus elementos para verse y funcionar bien en cualquier teléfono o tableta.'
+      },
+      {
+        pregunta: '¿Qué es un componente visual en una app móvil?',
+        opciones: ['Un elemento de la interfaz de usuario como un botón o un campo de texto', 'Una función interna del sistema operativo', 'Una base de datos local'],
         correcta: 0,
-        explicacion:
-          "En una relación uno a muchos, una fila de la tabla principal se asocia con varias filas de la tabla secundaria.",
+        explicacion: 'Son los bloques constructivos con los que el usuario interactúa en la pantalla.'
       },
-    ],
+      {
+        pregunta: '¿Cómo responde una aplicación móvil a la acción de presionar un botón?',
+        opciones: ['Reiniciando la app', 'Mediante la ejecución de un evento (event listener / onClick)', 'Enviando un correo'],
+        correcta: 1,
+        explicacion: 'El sistema detecta la interacción táctil y dispara la función programada para esa acción.'
+      }
+    ]
   },
-
   {
-    id: "desarrollo-web-php-bootstrap",
-    nombre: "Desarrollo Web Estático y Dinámico (PHP + Bootstrap)",
-    docente: "Javier Mineros",
-    icono: "🌐",
-    color: "#5fd3b3",
-    resumen:
-      "Construimos sitios responsivos con HTML5, CSS3 y Bootstrap, y los conectamos a MySQL mediante PHP sobre un servidor local XAMPP.",
+    id: 'mantenimiento-sistemas',
+    codigo: 'BTVD3 3.2',
+    nombre: 'Mantenimiento y aseguramiento de la operación del sistema informático',
+    docente: 'Arcides Canales / Julio Portillo',
+    icono: '🔧',
+    color: '#7cc9f9',
+    resumen: 'Realizamos actividades de diagnóstico, mantenimiento preventivo y correctivo en sistemas informáticos. Aprendimos a asegurar el funcionamiento continuo del hardware y software, optimizando el rendimiento de los equipos.',
     aprendiste: [
-      "Maquetación responsive",
-      "Componentes y grillas de Bootstrap",
-      "Conexión PHP–MySQL",
+      'El mantenimiento preventivo regular evita fallas críticas y prolonga la vida útil del equipo.',
+      'El diagnóstico estructurado permite identificar si una falla es a nivel de hardware o de sistema operativo.',
+      'Asegurar la operación incluye respaldar información y aplicar medidas de seguridad en el sistema.'
     ],
-    instrumentos: ["Sitios web desplegados", "Formularios de registro", "Rúbricas"],
-    programas: ["VS Code", "XAMPP (Apache, MySQL)", "Navegador web"],
-    herramientas: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "PHP", "Git"],
+    instrumentos: ['Lista de cotejo de mantenimiento técnico', 'Ficha de diagnóstico y soporte de equipos'],
+    programas: ['Herramientas de diagnóstico de sistema', 'Utilidades de optimización y formateo'],
+    herramientas: ['Kit de herramientas físicas', 'Software de mantenimiento técnico'],
+    keywords: ['mantenimiento', 'aseguramiento', 'sistemas informaticos', 'soporte', 'diagnostico', 'mantenimiento preventivo', 'mantenimiento correctivo'],
     recursos: [
-      { nombre: "MDN · HTML", url: "https://developer.mozilla.org/es/docs/Web/HTML" },
-      { nombre: "MDN · CSS", url: "https://developer.mozilla.org/es/docs/Web/CSS" },
-      { nombre: "Bootstrap Docs", url: "https://getbootstrap.com/docs/" },
-      { nombre: "PHP Manual", url: "https://www.php.net/manual/es/" },
+      { nombre: 'Microsoft Support — Mantenimiento de Windows', url: 'https://support.microsoft.com/es-es/windows' },
+      { nombre: 'GNU/Linux System Admin Guide', url: 'https://tldp.org/LDP/sag/html/index.html' },
+      { nombre: 'Cisco Networking Academy Docs', url: 'https://www.netacad.com/' }
     ],
-    evidencias: ["Sitio web funcional en XAMPP", "Capturas de formularios"],
+    evidencias: ['Informe técnico de mantenimiento realizado con fotografías o capturas del proceso.'],
     quiz: [
       {
-        pregunta: "¿Qué hace Bootstrap?",
-        opciones: ["Es un framework JS", "Es un framework CSS para diseño responsive", "Es una base de datos"],
+        pregunta: '¿Cuál es la diferencia entre mantenimiento preventivo y correctivo?',
+        opciones: ['No hay diferencia', 'El preventivo se realiza antes de que ocurran fallas y el correctivo repara un daño existente', 'El correctivo es más barato'],
         correcta: 1,
-        explicacion:
-          "Bootstrap ofrece un sistema de grillas y componentes CSS listos para construir interfaces responsivas.",
+        explicacion: 'La prevención busca evitar paros de servicio, mientras que la corrección soluciona problemas detectados.'
       },
       {
-        pregunta: "¿Qué lenguaje se ejecuta en el servidor con XAMPP?",
-        opciones: ["JavaScript", "PHP", "CSS"],
+        pregunta: '¿Qué paso es indispensable antes de realizar un mantenimiento correctivo en un sistema?',
+        opciones: ['Formatear el disco', 'Realizar un respaldo (backup) de la información crítica', 'Apagar el equipo'],
         correcta: 1,
-        explicacion:
-          "PHP se ejecuta en el servidor (Apache) y genera el HTML que recibe el navegador.",
+        explicacion: 'Protege los datos del usuario ante eventuales pérdidas durante la reparación o formateo.'
       },
       {
-        pregunta: "¿Qué significa HTML?",
-        opciones: [
-          "HyperText Markup Language",
-          "HighText Machine Language",
-          "HyperTool Multi Language",
-        ],
+        pregunta: '¿Qué herramienta del sistema operativo ayuda a verificar la salud del disco o los procesos?',
+        opciones: ['El navegador', 'El Administrador de tareas o el Administrador de discos', 'El Bloc de notas'],
+        correcta: 1,
+        explicacion: 'Monitorean en tiempo real el consumo de recursos (CPU, RAM, Disco) y el estado de las particiones.'
+      }
+    ]
+  },
+  {
+    id: 'administracion-bases-datos',
+    codigo: 'BTVD3 3.3',
+    nombre: 'Administración de base de datos',
+    docente: 'Javier Mineros',
+    icono: '🗄️',
+    color: '#a8d7ff',
+    resumen: 'Aprendimos a administrar sistemas gestores de bases de datos relacionales. Diseñamos diagramas entidad-relación, creamos tablas, definimos restricciones de integridad y redactamos consultas SQL para manipular información.',
+    aprendiste: [
+      'La correcta normalización de tablas elimina la redundancia de datos.',
+      'Las llaves primarias y foráneas garantizan la integridad referencial del sistema.',
+      'Las consultas SQL (SELECT, INSERT, UPDATE, DELETE) permiten gestionar la información de manera precisa.'
+    ],
+    instrumentos: ['Guía de diseño de modelos relacionales', 'Prueba práctica de consultas SQL'],
+    programas: ['MySQL Workbench', 'SQL Server Management Studio'],
+    herramientas: ['Lenguaje SQL', 'Motores de base de datos (MySQL / SQL Server)'],
+    keywords: ['modulo 3.3', 'base de datos', 'administracion', 'sql', 'mysql', 'sql server', 'consultas', 'tablas', 'relacion'],
+    recursos: [
+      { nombre: 'MySQL — Documentación', url: 'https://dev.mysql.com/doc/' },
+      { nombre: 'Microsoft Learn — SQL Server', url: 'https://learn.microsoft.com/es-es/sql/sql-server/' },
+      { nombre: 'Microsoft Learn — T-SQL Tutorial', url: 'https://learn.microsoft.com/es-es/sql/t-sql/' }
+    ],
+    evidencias: ['Script ejecutable .sql con creación de tablas, inserción de datos y consultas resueltas.'],
+    quiz: [
+      {
+        pregunta: '¿Qué función cumple una Llave Foránea (Foreign Key)?',
+        opciones: ['Eliminar registros automáticamente', 'Vincular un registro de una tabla con la llave primaria de otra tabla', 'Cifrar los datos de la tabla'],
+        correcta: 1,
+        explicacion: 'Mantiene la integridad referencial y establece las relaciones entre las entidades del modelo.'
+      },
+      {
+        pregunta: '¿Qué comando SQL se utiliza para modificar registros existentes en una tabla?',
+        opciones: ['INSERT', 'UPDATE', 'DELETE'],
+        correcta: 1,
+        explicacion: 'UPDATE modifica los valores de una o más columnas en las filas que cumplan la condición del WHERE.'
+      },
+      {
+        pregunta: '¿Por qué se aplican reglas de normalización en una base de datos?',
+        opciones: ['Para que el sistema sea más lento', 'Para evitar la duplicidad de datos y prevenir anomalías', 'Para usar menos tablas'],
+        correcta: 1,
+        explicacion: 'Organiza las tablas de forma óptima para mantener la consistencia del sistema.'
+      }
+    ]
+  },
+  {
+    id: 'documentacion-sistemas',
+    codigo: 'BTVD3 3.4',
+    nombre: 'Elaboración de documentación de sistemas informáticos',
+    docente: 'Javier Mineros',
+    icono: '📋',
+    color: '#8dd3c7',
+    resumen: 'Elaboramos la documentación técnica y de usuario para proyectos de software. Aprendimos a redactar especificaciones de requerimientos, diagramas de casos de uso, diccionarios de datos y manuales de instalación y usuario.',
+    aprendiste: [
+      'Un sistema sin documentación adecuada resulta difícil de mantener y escalar.',
+      'El manual técnico está dirigido a programadores y administradores; el manual de usuario, a quien opera el sistema.',
+      'Los diagramas UML y diccionarios de datos detallan la arquitectura del software.'
+    ],
+    instrumentos: ['Lista de cotejo de especificación de requerimientos', 'Rúbrica de evaluación de manual técnico y usuario'],
+    programas: ['Procesador de texto (MS Word / Google Docs)', 'Herramientas de diagramación (Draw.io / StarUML)'],
+    herramientas: ['Estándares de documentación de software', 'Notación UML (Casos de uso, despliegue)'],
+    keywords: ['modulo 3.4', 'documentacion', 'manual de usuario', 'manual tecnico', 'requisitos', 'casos de uso', 'diagramas'],
+    recursos: [
+      { nombre: 'ISO/IEC/IEEE 29148 Standard Overview', url: 'https://www.iso.org/standard/72089.html' },
+      { nombre: 'MDN — Documenting Web Projects', url: 'https://developer.mozilla.org/es/docs/MDN/Writing_guidelines' },
+      { nombre: 'Draw.io Documentation', url: 'https://www.drawio.com/doc/' }
+    ],
+    evidencias: ['Documento PDF completado con el Manual Técnico y de Usuario del proyecto informático.'],
+    quiz: [
+      {
+        pregunta: '¿Cuál es el objetivo principal del Manual de Usuario?',
+        opciones: ['Detallar el código fuente', 'Guiar al usuario final en el uso operativo del sistema', 'Listar los lenguajes usados'],
+        correcta: 1,
+        explicacion: 'No contiene detalles de código ni arquitectura, sino instrucciones directas de uso del software.'
+      },
+      {
+        pregunta: '¿Qué contiene un Diccionario de Datos?',
+        opciones: ['La descripción detallada de cada tabla, campo, tipo de dato y restricciones', 'Los correos del equipo', 'El presupuesto del proyecto'],
         correcta: 0,
-        explicacion:
-          "HTML son las siglas de HyperText Markup Language, el lenguaje de marcado de la web.",
+        explicacion: 'Sirve como referencia técnica para entender la estructura de almacenamiento del sistema.'
       },
-    ],
+      {
+        pregunta: '¿Para qué se utiliza un Diagrama de Casos de Uso?',
+        opciones: ['Para dibujar el logo', 'Para representar las interacciones entre los actores y las funciones del sistema', 'Para calcular costos'],
+        correcta: 1,
+        explicacion: 'Ilustra el alcance del software desde el punto de vista de las funcionalidades que ofrece.'
+      }
+    ]
   },
-
   {
-    id: "poo-c-sharp",
-    nombre: "Programación Orientada a Objetos (POO con C#)",
-    docente: "Javier Mineros",
-    icono: "🧩",
-    color: "#c792ea",
-    resumen:
-      "Modelamos el mundo real con clases y objetos en C#, aplicando encapsulamiento, herencia, polimorfismo y abstracción en soluciones modulares.",
+    id: 'ingles-tecnico',
+    codigo: 'BTVD3 3.6',
+    nombre: 'Conversación de inglés sobre mantenimiento de sistemas informáticos',
+    docente: 'Javier Mineros',
+    icono: '💬',
+    color: '#b9b7ff',
+    resumen: 'Desarrollamos habilidades de comunicación verbal y escrita en idioma inglés enfocadas al ámbito informático. Practicamos vocabulario técnico sobre hardware, software, atención de tickets de soporte y solución de problemas (troubleshooting).',
     aprendiste: [
-      "Clases, objetos y constructores",
-      "Encapsulamiento y visibilidad",
-      "Herencia y polimorfismo",
+      'El inglés técnico es indispensable para leer documentación, resolver errores y comunicarse en el área IT.',
+      'Simular llamadas y diálogos de soporte permite estructurar explicaciones claras al cliente.',
+      'Conocer los términos en inglés sobre componentes y comandos agiliza la búsqueda de soluciones.'
     ],
-    instrumentos: ["Soluciones de código modular", "Pruebas prácticas"],
-    programas: ["Visual Studio", ".NET SDK"],
-    herramientas: ["C#", ".NET Framework / Core", "Git"],
+    instrumentos: ['Rúbrica de evaluación de diálogo/conversación en inglés', 'Lista de cotejo de vocabulario técnico'],
+    programas: ['Plataforma de audio/video para grabaciones', 'Diccionarios técnicos en línea'],
+    herramientas: ['Guiones de soporte en inglés (Troubleshooting scripts)', 'Glosario técnico de sistemas'],
+    keywords: ['modulo 3.6', 'ingles', 'english', 'conversacion', 'technical english', 'soporte tecnico', 'ingles tecnico', 'mantenimiento'],
     recursos: [
-      { nombre: "Microsoft Learn · C#", url: "https://learn.microsoft.com/es-es/dotnet/csharp/" },
-      { nombre: ".NET Docs", url: "https://learn.microsoft.com/es-es/dotnet/" },
-      { nombre: "Refactoring Guru · Patrones", url: "https://refactoring.guru/es/design-patterns" },
+      { nombre: 'Cambridge Technical English Resources', url: 'https://www.cambridge.org/gb/cambridgeenglish/catalog/business-professional-and-vocational/technical-english' },
+      { nombre: 'BBC Learning English — Workplace', url: 'https://www.bbc.co.uk/learningenglish/english/features/english-at-work' },
+      { nombre: 'Cisco Technical English Guide', url: 'https://www.netacad.com/' }
     ],
-    evidencias: ["Proyecto en consola/escritorio en C#"],
+    evidencias: ['Archivo de audio/video con la simulación de soporte técnico en inglés o diálogo escrito sustentado.'],
     quiz: [
       {
-        pregunta: "¿Qué pilar oculta los detalles internos?",
-        opciones: ["Herencia", "Encapsulamiento", "Polimorfismo"],
+        pregunta: 'What is the meaning of "troubleshooting" in technical support?',
+        opciones: ['Instalar software', 'El proceso sistemático de diagnosticar y resolver problemas', 'Comprar hardware'],
         correcta: 1,
-        explicacion:
-          "El encapsulamiento protege el estado interno del objeto y expone solo lo necesario.",
+        explicacion: '"Troubleshooting" se refiere a identificar la causa raíz de una falla para darle solución.'
       },
       {
-        pregunta: "¿Qué es un constructor?",
-        opciones: [
-          "Un método que se ejecuta al crear un objeto e inicializa sus atributos",
-          "Una variable global",
-          "Un tipo de bucle",
-        ],
+        pregunta: 'Which phrase is appropriate to ask a user about a software error?',
+        opciones: ['Fix it yourself', 'Could you please describe the error message displayed on your screen?', 'I don\'t know'],
+        correcta: 1,
+        explicacion: 'Es una forma educada y profesional de solicitar información específica del problema al usuario.'
+      },
+      {
+        pregunta: 'What does the term "backup" mean in IT context?',
+        opciones: ['Borrar archivos', 'La copia de seguridad de archivos o datos para prevenir pérdidas', 'Actualizar Windows'],
+        correcta: 1,
+        explicacion: 'Se utiliza globalmente en inglés técnico para indicar la duplicación preventiva de la información.'
+      }
+    ]
+  },
+  {
+    id: 'proyecto-innovador-software',
+    codigo: 'BTVD3 3.8',
+    nombre: 'Proyecto innovador de desarrollo de software',
+    docente: 'Javier Mineros',
+    icono: '💡',
+    color: '#ffad9a',
+    resumen: 'Espacio para proponer y desarrollar una solución de software innovadora, aplicando los conocimientos de la especialidad a una necesidad o problema.',
+    aprendiste: [
+      'Identificar una necesidad que pueda atenderse con una solución de software.',
+      'Planificar y desarrollar una propuesta de proyecto.',
+      'Presentar y explicar la solución construida.'
+    ],
+    instrumentos: ['Propuesta de proyecto', 'Presentación del proyecto'],
+    programas: ['Herramientas de desarrollo de software'],
+    herramientas: ['Planificación de proyectos', 'Diseño y programación de software'],
+    keywords: ['BTVD3 3.8', 'proyecto innovador', 'desarrollo de software', 'solucion', 'prototipo'],
+    recursos: [
+      { nombre: 'MDN — Learn web development', url: 'https://developer.mozilla.org/es/docs/Learn' },
+      { nombre: 'GitHub Skills', url: 'https://skills.github.com/' }
+    ],
+    evidencias: ['Propuesta y presentación del proyecto innovador de software.'],
+    quiz: [
+      {
+        pregunta: '¿Cuál es un buen punto de partida para un proyecto innovador de software?',
+        opciones: ['Identificar una necesidad o problema', 'Elegir colores antes de conocer el propósito', 'Escribir código sin planificar'],
         correcta: 0,
-        explicacion:
-          "El constructor se llama automáticamente al instanciar la clase y deja el objeto en un estado válido.",
-      },
-      {
-        pregunta: "¿Qué lenguaje de POO usaron?",
-        opciones: ["Python", "C#", "Java"],
-        correcta: 1,
-        explicacion:
-          "El módulo se trabajó con C# sobre .NET, usando Visual Studio como entorno principal.",
-      },
-    ],
+        explicacion: 'Comprender la necesidad permite definir el propósito y orientar el desarrollo de la solución.'
+      }
+    ]
   },
-
   {
-    id: "aplicaciones-moviles-maui",
-    nombre: "Aplicaciones Móviles con .NET MAUI y SQLite",
-    docente: "Javier Mineros",
-    icono: "📱",
-    color: "#f78fb3",
-    resumen:
-      "Creamos aplicaciones multiplataforma con .NET MAUI, diseñando vistas en XAML y guardando la información en una base de datos local SQLite.",
+    id: 'microempresa-cooperativa',
+    codigo: 'BTVD3 3.7',
+    nombre: 'Puesta en marcha de la microempresa en asociatividad cooperativa',
+    docente: 'Julio Portillo',
+    icono: '🤝',
+    color: '#8dd3c7',
+    resumen: 'Módulo orientado a conocer cómo organizar y poner en marcha una microempresa mediante el trabajo asociativo y los principios de cooperación.',
     aprendiste: [
-      "Arquitectura de una app MAUI",
-      "Diseño de vistas con XAML",
-      "Bases de datos locales con SQLite",
+      'Reconocer la importancia de la organización para iniciar una microempresa.',
+      'Comprender el valor del trabajo asociativo y la cooperación.',
+      'Identificar elementos básicos para poner en marcha una iniciativa productiva.'
     ],
-    instrumentos: ["App multiplataforma funcional", "Rúbrica de proyecto"],
-    programas: ["Visual Studio con workload MAUI", "Emulador Android"],
-    herramientas: [".NET MAUI", "C#", "XAML", "SQLite"],
+    instrumentos: ['Guías de trabajo', 'Actividades de planificación'],
+    programas: ['Herramientas de planificación y presentación'],
+    herramientas: ['Trabajo asociativo', 'Planificación de iniciativas'],
+    keywords: ['BTVD3 3.7', 'microempresa', 'asociatividad', 'cooperativa', 'emprendimiento'],
     recursos: [
-      { nombre: "Microsoft Learn · MAUI", url: "https://learn.microsoft.com/es-es/dotnet/maui/" },
-      { nombre: "SQLite Docs", url: "https://www.sqlite.org/docs.html" },
-      { nombre: ".NET Learn", url: "https://dotnet.microsoft.com/es-es/learn" },
+      { nombre: 'OIT — Cooperativas', url: 'https://www.ilo.org/es/temas-y-sectores/cooperativas' }
     ],
-    evidencias: ["App funcional", "Capturas del emulador"],
+    evidencias: ['Actividades de organización y planificación de una iniciativa microempresarial.'],
     quiz: [
       {
-        pregunta: "¿Qué es .NET MAUI?",
-        opciones: [
-          "Un lenguaje",
-          "Un framework multiplataforma para apps móviles y escritorio",
-          "Un motor de bases de datos",
-        ],
-        correcta: 1,
-        explicacion:
-          "MAUI permite construir una sola app para Android, iOS, Windows y macOS a partir de una base compartida.",
-      },
-      {
-        pregunta: "¿Qué base de datos local se usa?",
-        opciones: ["MySQL", "SQLite", "PostgreSQL"],
-        correcta: 1,
-        explicacion:
-          "SQLite es una base de datos ligera que se guarda en un archivo dentro del dispositivo.",
-      },
-      {
-        pregunta: "¿Qué lenguaje de marcado se usa en las vistas de MAUI?",
-        opciones: ["HTML", "XAML", "JSON"],
-        correcta: 1,
-        explicacion:
-          "XAML describe la interfaz de usuario y se enlaza con el código C# de la aplicación.",
-      },
-    ],
-  },
-
-  {
-    id: "sistemas-informacion-vivero",
-    nombre: "Sistemas de Información y Documentación (Caso Vivero “La Marchita”)",
-    docente: "Javier Mineros",
-    icono: "📋",
-    color: "#ef6b57",
-    resumen:
-      "Analizamos un caso real —el Vivero “La Marchita”— levantando requerimientos, modelando el sistema con UML y documentándolo en manuales técnicos y funcionales.",
-    aprendiste: [
-      "Levantamiento de requerimientos",
-      "Modelado de sistemas con UML",
-      "Documentación técnica estructurada",
-    ],
-    instrumentos: ["Manual de sistema", "Diagramas de arquitectura", "Rúbrica de proyecto"],
-    programas: ["MindMeister", "Procesadores de texto"],
-    herramientas: ["UML", "Documentación técnica estructurada"],
-    recursos: [
-      { nombre: "Diagrams.net", url: "https://www.diagrams.net/" },
-      { nombre: "Lucidchart", url: "https://www.lucidchart.com/" },
-      { nombre: "ISO/IEC 25010", url: "https://iso25000.com/index.php/normas-iso-25000/iso-25010" },
-    ],
-    evidencias: ["Manual funcional del Vivero", "Diagramas del sistema"],
-    quiz: [
-      {
-        pregunta: "¿Cuál fue el caso principal del módulo?",
-        opciones: ["Tienda en línea", "Vivero “La Marchita”", "Sistema bancario"],
-        correcta: 1,
-        explicacion:
-          "El caso guía del módulo fue el Vivero “La Marchita”, usado para analizar requerimientos y documentar el sistema.",
-      },
-      {
-        pregunta: "¿Qué tipo de diagramas se usaron para modelar?",
-        opciones: ["Diagramas UML", "Diagramas de flujo de caja", "Mapas mentales"],
+        pregunta: '¿Qué promueve la asociatividad cooperativa?',
+        opciones: ['La colaboración para alcanzar objetivos comunes', 'El trabajo aislado', 'Evitar la planificación'],
         correcta: 0,
-        explicacion:
-          "UML permitió representar actores, casos de uso y la estructura del sistema.",
-      },
-      {
-        pregunta: "¿Qué se entregó además del sistema?",
-        opciones: ["Solo el código", "Manual funcional y técnico", "Un videojuego"],
-        correcta: 1,
-        explicacion:
-          "La documentación es parte del producto: manual funcional para usuarios y manual técnico para el equipo.",
-      },
-    ],
-  },
-
-  {
-    id: "hardware-redes-mantenimiento",
-    nombre: "Hardware, Redes y Mantenimiento",
-    docente: "Arcides Canales",
-    icono: "🔧",
-    color: "#9ece6a",
-    resumen:
-      "Abrimos el equipo: diagnóstico de componentes, mantenimiento preventivo y correctivo, redes y reportes técnicos redactados en inglés.",
-    aprendiste: [
-      "Diagnóstico de hardware",
-      "Mantenimiento preventivo y correctivo",
-      "Reportes técnicos en inglés",
-    ],
-    instrumentos: ["Informes de diagnóstico", "Rúbricas de mantenimiento"],
-    programas: ["Herramientas de diagnóstico de Windows", "Software de pruebas de estrés"],
-    herramientas: ["Multímetros", "Software de pruebas", "Esquemas de red"],
-    recursos: [
-      { nombre: "Cisco NetAcad", url: "https://www.netacad.com/" },
-      { nombre: "CompTIA A+", url: "https://www.comptia.org/certifications/a" },
-      { nombre: "Microsoft Learn", url: "https://learn.microsoft.com/es-es/" },
-    ],
-    evidencias: ["Reportes de mantenimiento en inglés", "Fichas técnicas"],
-    quiz: [
-      {
-        pregunta: "¿Qué herramienta mide voltaje y continuidad?",
-        opciones: ["Osciloscopio", "Multímetro", "Crimpadora"],
-        correcta: 1,
-        explicacion:
-          "El multímetro mide voltaje, corriente, resistencia y continuidad en un circuito.",
-      },
-      {
-        pregunta: "¿En qué idioma se redactaron los reportes técnicos?",
-        opciones: ["Español", "Inglés", "Francés"],
-        correcta: 1,
-        explicacion:
-          "Los informes se redactaron en inglés como práctica del lenguaje técnico de la industria.",
-      },
-      {
-        pregunta: "¿Qué tipo de mantenimiento previene fallas?",
-        opciones: ["Correctivo", "Preventivo", "Predictivo de emergencia"],
-        correcta: 1,
-        explicacion:
-          "El mantenimiento preventivo se planifica antes de que ocurra la falla para prolongar la vida del equipo.",
-      },
-    ],
-  },
-
-  {
-    id: "automatizacion-robotica-vision",
-    nombre: "Automatización, Robótica y Visión Artificial",
-    docente: "Arcides Canales",
-    icono: "🤖",
-    color: "#6cc9e8",
-    resumen:
-      "Unimos hardware y software: Arduino, sensores y visión artificial con OpenCV y MediaPipe para construir un vehículo 4WD y un circuito LED controlado por gestos.",
-    aprendiste: [
-      "Arduino, sensores y actuadores",
-      "Visión artificial con OpenCV y MediaPipe",
-      "Integración hardware–software",
-    ],
-    instrumentos: ["Prototipo físico funcional", "Scripts de visión artificial"],
-    programas: ["Arduino IDE", "VS Code (Python)"],
-    herramientas: [
-      "Arduino Uno",
-      "L298N",
-      "Sensores de flama",
-      "Servomotor MG90S",
-      "Bomba de agua",
-      "OpenCV",
-      "MediaPipe",
-      "Python",
-    ],
-    recursos: [
-      { nombre: "Arduino Docs", url: "https://docs.arduino.cc/" },
-      { nombre: "OpenCV Docs", url: "https://docs.opencv.org/" },
-      { nombre: "MediaPipe Docs", url: "https://developers.google.com/mediapipe" },
-    ],
-    evidencias: ["Prototipo 4WD", "Video del circuito LED con gestos"],
-    quiz: [
-      {
-        pregunta: "¿Qué placa se usó en los prototipos?",
-        opciones: ["Raspberry Pi", "Arduino Uno", "ESP32"],
-        correcta: 1,
-        explicacion:
-          "Los prototipos se controlaron con Arduino Uno, sensores y el driver L298N.",
-      },
-      {
-        pregunta: "¿Qué librerías se usaron para visión artificial?",
-        opciones: ["TensorFlow y PyTorch", "OpenCV y MediaPipe", "NumPy y Pandas"],
-        correcta: 1,
-        explicacion:
-          "OpenCV procesa la imagen y MediaPipe detecta gestos y puntos de referencia de la mano.",
-      },
-      {
-        pregunta: "¿Qué lenguaje se usó para la visión artificial?",
-        opciones: ["Java", "Python", "C++"],
-        correcta: 1,
-        explicacion:
-          "Python fue el lenguaje de los scripts de visión artificial, ejecutados desde VS Code.",
-      },
-    ],
-  },
-];
+        explicacion: 'La asociatividad cooperativa se basa en la colaboración y la organización de sus integrantes.'
+      }
+    ]
+  }
+].sort((a, b) => a.codigo.localeCompare(b.codigo, 'es', { numeric: true }));

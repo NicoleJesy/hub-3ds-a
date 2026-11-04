@@ -1,44 +1,36 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" data-tema="oscuro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#0a0e1a" />
-  <meta name="description" content="Memoria 3DSA: portal de repaso de los ocho módulos del 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A» del Instituto Nacional Cantón Lourdes (INDEL)." />
-  <meta property="og:title" content="Memoria 3DSA — Todo el año, módulo por módulo" />
-  <meta property="og:description" content="Repaso de los 8 módulos del 3.º DS «A» del INDEL: qué aprendimos, con qué herramientas y dónde seguir aprendiendo." />
+  <meta name="description" content="Memorias 3DSA: portal de repaso de los 9 módulos del 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A» del Instituto Nacional Cantón Lourdes (INDEL)." />
+  <meta property="og:title" content="Memorias 3DSA — Todo el año, módulo por módulo" />
+  <meta property="og:description" content="Repaso de los 9 módulos del 3.º DS «A»: qué aprendimos, con qué herramientas y dónde seguir aprendiendo." />
   <meta property="og:type" content="website" />
 
-  <title>Memoria 3DSA — Repaso de los 8 módulos</title>
+  <title>Memorias 3DSA — Repaso de los 9 módulos</title>
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e1a'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' font-style='italic' fill='%23e8b14a' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles/main.css" />
 
-  <!-- Marca la página como "con JS" para que las animaciones de entrada no oculten
-       contenido cuando JavaScript está desactivado. -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
 
 <body>
   <a class="enlace-saltar" href="#contenido">Saltar al contenido principal</a>
 
-  <!-- ============================================================
-       CABECERA
-       ============================================================ -->
   <header class="cabecera" id="cabecera">
     <div class="contenedor cabecera-contenido">
-      <a class="marca" href="#inicio" aria-label="Memoria 3DSA — volver al inicio">
+      <a class="marca" href="#inicio" aria-label="Memorias 3DSA — volver al inicio">
         <span class="marca-simbolo" aria-hidden="true">M</span>
-        <span class="marca-texto">Memoria <span class="marca-anio">3DSA</span></span>
+        <span class="marca-texto">Memorias <span class="marca-anio">3DSA</span></span>
       </a>
 
       <nav class="navegacion" aria-label="Navegación principal">
@@ -56,10 +48,6 @@
   </header>
 
   <main id="contenido">
-
-    <!-- ============================================================
-         HERO
-         ============================================================ -->
     <section class="heroe" id="inicio" aria-labelledby="heroe-titulo">
       <div class="contenedor heroe-grid">
         <div class="heroe-principal">
@@ -78,7 +66,7 @@
 
           <div class="heroe-acciones revelar" style="--retraso: 210ms">
             <a class="boton boton-primario" href="#modulos">
-              Explorar los 8 módulos
+              Explorar los 9 módulos
               <span class="boton-flecha" aria-hidden="true">→</span>
             </a>
             <a class="boton boton-fantasma" href="#proyectos">Ver proyectos</a>
@@ -96,15 +84,15 @@
           <dl class="heroe-estadisticas">
             <div class="heroe-estadistica">
               <dt class="heroe-estadistica-etiqueta">Módulos</dt>
-              <dd class="heroe-estadistica-valor" data-total-modulos>08</dd>
+              <dd class="heroe-estadistica-valor" data-total-modulos>09</dd>
             </div>
             <div class="heroe-estadistica">
               <dt class="heroe-estadistica-etiqueta">Docentes</dt>
-              <dd class="heroe-estadistica-valor" data-total-docentes>02</dd>
+              <dd class="heroe-estadistica-valor" data-total-docentes>03</dd>
             </div>
             <div class="heroe-estadistica">
               <dt class="heroe-estadistica-etiqueta">Proyectos</dt>
-              <dd class="heroe-estadistica-valor">04</dd>
+              <dd class="heroe-estadistica-valor">05</dd>
             </div>
           </dl>
           <p class="heroe-indice-nota">
@@ -119,9 +107,6 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         MÓDULOS
-         ============================================================ -->
     <section class="seccion" id="modulos" aria-labelledby="modulos-titulo">
       <div class="contenedor">
         <div class="seccion-cabecera revelar">
@@ -131,7 +116,7 @@
           </p>
           <div class="seccion-cabecera-fila">
             <h2 class="seccion-titulo" id="modulos-titulo">
-              Los ocho módulos <em>del año</em>
+              Los 9 módulos <em>del año</em>
             </h2>
             <p class="seccion-descripcion">
               Cada ficha reúne el resumen, los instrumentos de evaluación, los
@@ -140,11 +125,41 @@
           </div>
         </div>
 
-        <!-- El grid se pinta desde data/modulos.js -->
+        <div class="progreso-modulos" aria-label="Progreso de repaso">
+          <div class="progreso-header">
+            <p class="progreso-titulo">Tu progreso de repaso</p>
+            <span class="progreso-porcentaje" id="progreso-porcentaje">0%</span>
+          </div>
+          <div class="barra-progreso" id="barra-progreso" role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" aria-label="Progreso de repaso">
+            <span id="progreso-relleno"></span>
+          </div>
+          <p class="progreso-meta" id="progreso-meta">0 de 9 módulos repasados</p>
+        </div>
+
+        <div class="toolbar-modulos" aria-label="Buscar y filtrar módulos">
+          <label class="buscador-modulos" for="buscador-modulos">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+              <circle cx="11" cy="11" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M16 16l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <input id="buscador-modulos" type="search" placeholder="Buscar módulo, programa o palabra clave..." aria-label="Buscar módulos" />
+          </label>
+
+          <div class="filtros-docentes" role="group" aria-label="Filtrar por docente">
+            <button class="chip-docente activo" type="button" data-docente="todos" aria-pressed="true">Todos</button>
+            <button class="chip-docente" type="button" data-docente="Arcides Canales" aria-pressed="false">Arcides Canales</button>
+            <button class="chip-docente" type="button" data-docente="Javier Mineros" aria-pressed="false">Javier Mineros</button>
+            <button class="chip-docente" type="button" data-docente="Julio Portillo" aria-pressed="false">Julio Portillo</button>
+          </div>
+
+          <div class="toolbar-meta">
+            <p class="contador-modulos" id="contador-modulos" aria-live="polite">Mostrando 9 de 9 módulos</p>
+            <button class="limpiar-filtros" id="limpiar-filtros" type="button" hidden data-limpiar-filtros>Limpiar</button>
+          </div>
+        </div>
+
         <div class="grid-modulos" id="grid-modulos" aria-busy="true"></div>
 
-        <!-- Aviso para cuando el sitio se abre con file:// (los módulos ES
-             necesitan un servidor). -->
         <div class="aviso-carga" id="aviso-carga" hidden>
           <p class="aviso-carga-titulo">Abre el portal con un servidor local</p>
           <p>
@@ -167,9 +182,6 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         PROYECTOS
-         ============================================================ -->
     <section class="seccion" id="proyectos" aria-labelledby="proyectos-titulo">
       <div class="contenedor">
         <div class="seccion-cabecera revelar">
@@ -182,16 +194,63 @@
               Lo que <em>construimos</em>
             </h2>
             <p class="seccion-descripcion">
-              Cuatro entregas que cruzaron varios módulos y terminaron en algo que
-              se puede tocar, probar y mostrar.
+              Cinco entregas que cruzaron varios módulos y terminaron en algo que
+              se puede tocar, probar y mostrar. La primera es la que más lejos
+              llegó.
             </p>
           </div>
         </div>
 
         <div class="grid-proyectos">
-          <article class="tarjeta-proyecto revelar" style="--retraso: 0ms">
+          <article class="tarjeta-proyecto tarjeta-proyecto--estrella revelar">
             <div class="proyecto-cabecera">
               <span class="proyecto-indice">P.01</span>
+              <span class="proyecto-estrella-insignia">★ Proyecto estrella</span>
+            </div>
+
+            <div class="proyecto-estrella-grid">
+              <div class="proyecto-estrella-cuerpo">
+                <h3 class="proyecto-titulo" id="proyecto-sitrap">
+                  SITRAP
+                  <span class="proyecto-subtitulo">Sistema Inteligente de Transporte</span>
+                </h3>
+                <p class="proyecto-descripcion">
+                  Aplicación multiplataforma —Android y Windows— para moverse por
+                  El Salvador: eliges origen y destino, la app busca las rutas de
+                  buses y microbuses y dibuja el recorrido sobre el mapa. Suma un
+                  módulo turístico, favoritos, historial y reportes de la
+                  comunidad, con base de datos local para funcionar sin internet.
+                </p>
+                <ul class="proyecto-etiquetas" aria-label="Módulos relacionados">
+                  <li>Aplicaciones móviles</li>
+                  <li>Bases de datos</li>
+                  <li>Turismo</li>
+                  <li>Mapas</li>
+                </ul>
+              </div>
+
+              <div class="proyecto-estrella-ficha">
+                <p class="proyecto-estrella-rotulo">Lo que resuelve</p>
+                <ul class="proyecto-estrella-lista">
+                  <li>Buscador de rutas por origen y destino, cruzando departamentos, municipios y rutas.</li>
+                  <li>Mapas interactivos con el trayecto real entre paradas.</li>
+                  <li>Catálogo turístico con destinos por departamento.</li>
+                  <li>Sesión local con contraseñas encriptadas, favoritos e historial.</li>
+                  <li>Reportes de la comunidad para avisar problemas del servicio.</li>
+                </ul>
+
+                <p class="proyecto-estrella-rotulo">Stack</p>
+                <p class="proyecto-estrella-stack">
+                  Flutter · Dart · SQLite · OpenStreetMap · OSRM<br />
+                  VS Code · Android Studio · GitHub · Netlify
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="tarjeta-proyecto revelar" style="--retraso: 80ms">
+            <div class="proyecto-cabecera">
+              <span class="proyecto-indice">P.02</span>
               <span class="proyecto-tipo">Sistema de información</span>
             </div>
             <h3 class="proyecto-titulo">Vivero «La Marchita»</h3>
@@ -206,9 +265,9 @@
             </ul>
           </article>
 
-          <article class="tarjeta-proyecto revelar" style="--retraso: 80ms">
+          <article class="tarjeta-proyecto revelar" style="--retraso: 160ms">
             <div class="proyecto-cabecera">
-              <span class="proyecto-indice">P.02</span>
+              <span class="proyecto-indice">P.03</span>
               <span class="proyecto-tipo">Comercio electrónico</span>
             </div>
             <h3 class="proyecto-titulo">Tienda E-commerce PrestaShop</h3>
@@ -223,9 +282,9 @@
             </ul>
           </article>
 
-          <article class="tarjeta-proyecto revelar" style="--retraso: 160ms">
+          <article class="tarjeta-proyecto revelar" style="--retraso: 240ms">
             <div class="proyecto-cabecera">
-              <span class="proyecto-indice">P.03</span>
+              <span class="proyecto-indice">P.04</span>
               <span class="proyecto-tipo">Robótica</span>
             </div>
             <h3 class="proyecto-titulo">Vehículo 4WD Autónomo</h3>
@@ -240,29 +299,27 @@
             </ul>
           </article>
 
-          <article class="tarjeta-proyecto revelar" style="--retraso: 240ms">
+          <article class="tarjeta-proyecto revelar" style="--retraso: 320ms">
             <div class="proyecto-cabecera">
-              <span class="proyecto-indice">P.04</span>
-              <span class="proyecto-tipo">Visión artificial</span>
+              <span class="proyecto-indice">P.05</span>
+              <span class="proyecto-tipo">Electrónica y Arduino</span>
             </div>
-            <h3 class="proyecto-titulo">Circuito LED con Visión Artificial</h3>
+            <h3 class="proyecto-titulo">Semáforo sencillo con Arduino</h3>
             <p class="proyecto-descripcion">
-              Los gestos de la mano, detectados con OpenCV y MediaPipe, encienden
-              y apagan un circuito LED físico en tiempo real.
+              Semáforo con luces LED en Arduino Uno y protoboard, programado en
+              Arduino IDE para alternar las luces roja, amarilla y verde.
             </p>
-            <ul class="proyecto-etiquetas" aria-label="Módulos relacionados">
-              <li>Python</li>
-              <li>OpenCV</li>
-              <li>MediaPipe</li>
+            <ul class="proyecto-etiquetas" aria-label="Componentes y herramientas">
+              <li>Arduino Uno</li>
+              <li>Luces LED</li>
+              <li>Protoboard</li>
+              <li>Arduino IDE</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         ACERCA
-         ============================================================ -->
     <section class="seccion seccion-acerca" id="acerca" aria-labelledby="acerca-titulo">
       <div class="contenedor">
         <div class="seccion-cabecera revelar">
@@ -289,10 +346,7 @@
 
           <div class="acerca-texto revelar" style="--retraso: 100ms">
             <p>
-              <strong>Memoria 3DSA</strong> reúne los ocho módulos de la
-              especialidad con un lenguaje claro: qué se trabajó, con qué
-              programas, cómo se evaluó y qué recursos sirven para seguir
-              practicando desde casa.
+              <strong>Memorias 3DSA</strong> reúne los 9 módulos de la especialidad con un lenguaje claro: qué se trabajó, con qué programas, cómo se evaluó y qué recursos sirven para seguir practicando desde casa.
             </p>
             <p>
               Es un proyecto estático —HTML, CSS y JavaScript puro— pensado para
@@ -306,14 +360,13 @@
               <ul class="lista-docentes">
                 <li><span class="docente-monograma" aria-hidden="true">JM</span> Javier Mineros</li>
                 <li><span class="docente-monograma" aria-hidden="true">AC</span> Arcides Canales</li>
+                <li><span class="docente-monograma" aria-hidden="true">JP</span> Julio Portillo</li>
               </ul>
             </div>
 
             <div class="acerca-proximamente">
               <p class="acerca-subtitulo">Próximamente</p>
               <ul class="chips-proximamente" aria-label="Funciones planeadas para las próximas versiones">
-                <li class="proximamente">Buscador<span class="visualmente-oculto"> (próximamente)</span></li>
-                <li class="proximamente">Progreso guardado<span class="visualmente-oculto"> (próximamente)</span></li>
                 <li class="proximamente">Quiz interactivo<span class="visualmente-oculto"> (próximamente)</span></li>
                 <li class="proximamente">Modo claro<span class="visualmente-oculto"> (próximamente)</span></li>
               </ul>
@@ -324,16 +377,13 @@
     </section>
   </main>
 
-  <!-- ============================================================
-       PIE DE PÁGINA
-       ============================================================ -->
   <footer class="pie" aria-labelledby="pie-titulo">
     <div class="contenedor">
       <div class="pie-superior">
         <div class="pie-marca">
-          <a class="marca" href="#inicio" aria-label="Memoria 3DSA — volver al inicio">
+          <a class="marca" href="#inicio" aria-label="Memorias 3DSA — volver al inicio">
             <span class="marca-simbolo" aria-hidden="true">M</span>
-            <span class="marca-texto">Memoria <span class="marca-anio">3DSA</span></span>
+            <span class="marca-texto">Memorias <span class="marca-anio">3DSA</span></span>
           </a>
           <p class="pie-lema">El año, módulo por módulo.</p>
         </div>
@@ -353,15 +403,12 @@
         </p>
         <p class="pie-tecnico">
           <span>HTML · CSS · JavaScript</span>
-          <span class="pie-version">v0.2</span>
+          <span class="pie-version">v0.5</span>
         </p>
       </div>
     </div>
   </footer>
 
-  <!-- ============================================================
-       MODAL DE FICHA (contenido generado por app.js)
-       ============================================================ -->
   <dialog class="modal-ficha" id="modal-ficha" aria-labelledby="modal-titulo">
     <div class="modal-panel">
       <div class="modal-cabecera">
@@ -381,10 +428,12 @@
     </div>
   </dialog>
 
+  <div id="toast-celebracion" class="toast-celebracion" role="status" aria-live="polite" aria-atomic="true" hidden>
+    🎉 ¡Repaso completo! Terminaste los 9 módulos.
+  </div>
+
   <script type="module" src="scripts/app.js"></script>
 
-  <!-- Aviso de respaldo: si el módulo ES no cargó (por ejemplo, al abrir el
-       archivo con file://), se muestra una ayuda en lugar de una página vacía. -->
   <script>
     window.addEventListener("load", function () {
       window.setTimeout(function () {

@@ -1,63 +1,100 @@
-# 🚀 Memoria 3DSA — Portal del Año
+﻿# Memorias 3DSA
 
-> **Instituto Nacional Cantón Lourdes (INDEL)**  
-> **Especialidad:** 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A»  
-> **Docentes:** Prof. Javier Arturo García Mineros & Prof. Arcides Canales
+> El año, módulo por módulo.
 
----
+Portal de repaso del 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A» del Instituto Nacional Cantón Lourdes (INDEL). Reúne los 9 módulos del programa, con su enfoque, herramientas, docentes y recursos de práctica.
 
-## 📌 Descripción del Proyecto
-
-**Memoria 3DSA** es un portal web estático, dinámico e interactivo diseñado como un archivo vivo de repaso de los 8 módulos cursados durante el año académico. 
-
-El sitio centraliza y sintetiza los aprendizajes, el software instalado, las herramientas utilizadas, los instrumentos de evaluación, los recursos oficiales y las evidencias de los proyectos desarrollados tanto en el eje de Desarrollo de Software (Prof. Javier Mineros) como en el de Hardware, Redes y Robótica (Prof. Arcides Canales).
+**Versión actual:** `v0.5`
 
 ---
 
-## 🌐 Enlace de Despliegue y Versión
+## ✨ Funcionalidades v0.5
 
-* **URL Pública (GitHub Pages):** [https://nicolejesy.github.io/hub-3ds-a/](https://nicolejesy.github.io/hub-3ds-a/)
-* **Versión Actual:** `v0.2` (Día 1 — Cimientos del HUB)
-
----
-
-## ✨ Características Principales
-
-* 🎨 **Diseño Editorial Dark Premium:** Sistema de diseño oscuro con tipografía editorial (*Fraunces* e *Inter*), tarjetas interactivas y animaciones escalonadas.
-* ⚡ **Renderizado Dinámico:** Generación de las tarjetas de los 8 módulos en tiempo real desde el archivo `data/modulos.js`.
-* 🗂️ **Modal Accesible:** Fichas desplegables (`<dialog>`) con resumen, aprendizajes clave, programas, herramientas, enlaces verificados y quiz de lectura.
-* 🏆 **Proyectos Destacados:** Sección con entregas integradoras como *Vivero «La Marchita»*, *Tienda E-commerce PrestaShop*, *Vehículo 4WD Autónomo* y *Circuito LED con Visión Artificial*.
-
----
-
-## 🛠️ Tecnologías Utilizadas
-
-* **HTML5:** Maquetación semántica y estándares de accesibilidad (`aria-*`, navegación por teclado).
-* **CSS3:** Custom properties, CSS Grid, Flexbox, animaciones con `IntersectionObserver` y diseño responsivo adaptado a móviles y escritorios.
-* **JavaScript (ES6+):** Módulos nativos, manipulación del DOM, control del flujo de foco y lógica de ventanas modales.
-* **Control de Versiones:** Git, repositorio remoto en GitHub y despliegue automático en GitHub Pages.
+- [x] Diseño editorial oscuro con acento ámbar.
+- [x] Grid de 9 módulos generado desde `data/modulos.js`, ordenados por su código oficial.
+- [x] Búsqueda por nombre, resumen, programas, herramientas y palabras clave.
+- [x] Filtros por docente: `Todos`, `Arcides Canales`, `Javier Mineros` y `Julio Portillo`.
+- [x] Estado vacío con botón de limpieza.
+- [x] Botón de “Marcar como repasado” en tarjeta y en modal.
+- [x] Persistencia con `localStorage`.
+- [x] Barra de progreso global con porcentaje y texto de avance.
+- [x] Toast de celebración al completar los 9 módulos.
+- [x] Implementación responsive y accesible.
 
 ---
 
-## 👥 Equipo de Trabajo y Roles
+## 🧭 Revisión cruzada
 
-| Integrante | Rol Principal | Aportes |
-| :--- | :--- | :--- |
-| **Nicole Hernández** | Líder Git / QA y Accesibilidad | Control de versiones, pruebas de contraste, navegación por teclado y documentación. |
-| **Eileen Henríquez** | Diseñadora UI / Frontend. | Maquetación HTML, sistema visual en CSS, hero y componentes de tarjetas. |
-| **Jonathan García** | Curador de Contenido | Estructura de datos, redacción de resúmenes de módulos, evidencias y enlaces. |
+Se usaron GitHub Issues como soporte para revisar el progreso del portal y cerrar tareas con un enfoque claro.
+
+- **Issue 1:** actualizar la estructura de datos con los nuevos módulos reales del curso y corregir el número total de módulos.
+- **Issue 2:** implementar la toolbar de búsqueda y filtros, evitando romper el diseño base del portal.
+
+La revisión cruzada permitió validar que el contenido, el comportamiento y la nomenclatura del sitio fueran coherentes antes de publicar la versión v0.5.
 
 ---
 
-## 📂 Estructura del Repositorio
+## 🗂 Módulos del portal
+
+| Código | Módulo | Docente(s) |
+|---|---|---|
+| BTVD3 3.0 | Orientación a los estudiantes al proceso educativo | Julio Portillo |
+| BTVD3 3.1 | Desarrollo de aplicaciones de software para la solución de problemas | Arcides Canales |
+| BTVD3 3.2 | Mantenimiento y aseguramiento de la operación del sistema informático | Arcides Canales / Julio Portillo |
+| BTVD3 3.3 | Administración de base de datos | Javier Mineros |
+| BTVD3 3.4 | Elaboración de documentación de sistemas informáticos | Javier Mineros |
+| BTVD3 3.5 | Desarrollo de componentes para dispositivos móviles | Arcides Canales |
+| BTVD3 3.6 | Conversación de inglés sobre mantenimiento de sistemas informáticos | Javier Mineros |
+| BTVD3 3.7 | Puesta en marcha de la microempresa en asociatividad cooperativa | Julio Portillo |
+| BTVD3 3.8 | Proyecto innovador de desarrollo de software | Javier Mineros |
+
+---
+
+## 📍 Estructura del proyecto
 
 ```text
-Memoria_3DSA/
-├── index.html          → Estructura semántica principal
-├── styles/
-│   └── main.css        → Variables CSS, componentes, animaciones y responsive
-├── scripts/
-│   └── app.js          → Renderizado dinámico, modal accesible y navegación
+Memorias_3DSA/
+├── index.html
+├── README.md
 ├── data/
-│   └── modulos.js      → Fuente de datos de los 8 módulos del año
-└── README.md           → Documentación oficial del proyecto
+│   └── modulos.js
+├── scripts/
+│   └── app.js
+├── styles/
+│   └── main.css
+└── assets/
+```
+
+---
+
+## 🚀 Cómo ejecutar
+
+Se recomienda servir la carpeta con un servidor HTTP local:
+
+```bash
+python -m http.server 5500
+```
+
+Luego abrir en el navegador:
+
+```text
+http://localhost:5500
+```
+
+---
+
+## 🤖 Registro de prompts de IA usados hoy
+
+| # | Prompt resumido | Resultado |
+|---|---|---|
+| 1 | Actualizar la base de datos del portal con los módulos y docentes correctos. | Se actualizó `data/modulos.js` con la información del programa. |
+| 2 | Implementar la versión v0.5 con buscador, filtros, progreso y estado de repasado. | Se añadieron las interacciones y persistencia en `scripts/app.js`. |
+| 3 | Ajustar la marca del portal a “Memorias 3DSA” y corregir textos que mencionaban 8 módulos. | Se actualizaron los textos visibles en `index.html` y `README.md`. |
+
+---
+
+## 📝 Notas finales
+
+- El nombre oficial del portal es **Memorias 3DSA**.
+- La versión actual del sitio corresponde a **v0.5**.
+- El diseño mantiene la paleta y la tipografía originales sin romper la base del proyecto anterior.
