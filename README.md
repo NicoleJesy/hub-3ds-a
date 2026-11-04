@@ -6,38 +6,47 @@
 
 ---
 
-## 📌 Descripción del Proyecto
+## 📌 Descripción del Proyecto e Introducción Académica
 
-El **HUB 3DS·A** es un portal web educativo estático, dinámico e interactivo diseñado para recopilar, estructurar y repasar de manera centralizada todos los aprendizajes, proyectos, módulos y competencias adquiridas a lo largo del año académico[cite: 3].
+El **HUB 3DS·A** es un portal web educativo estático, dinámico e interactivo diseñado para recopilar, estructurar y repasar centralizadamente los conocimientos, proyectos y competencias adquiridas durante el año académico[cite: 3].
 
-Este HUB funciona como un centro de recursos técnico donde cualquier estudiante puede consultar las fichas informativas de los módulos cursados con los profesores **Javier Mineros** y **Arcides Canales**, revisar las herramientas utilizadas, el software instalado, las evidencias de los proyectos y acceder a recursos para seguir aprendiendo[cite: 3].
+El contenido del portal sintetiza la ruta formativa de los módulos técnicos impartidos por los docentes de la especialidad[cite: 3]:
+
+* **Eje de Desarrollo Web, Frontend y Gestión de Proyectos (Prof. Javier Mineros):**[cite: 3]
+  * Maquetación semántica y accesible mediante HTML5, junto con diseño adaptable (*responsive*) en CSS3[cite: 3].
+  * Lógica de programación web con JavaScript (ES6+): manipulación del DOM, recorrido de datos e interactividad[cite: 3].
+  * Control de versiones colaborativo con Git y GitHub: flujo de trabajo en equipo, etiquetas de versión (`v0.2`, `v0.5`, `v1.0`), resolución de conflictos y publicación en GitHub Pages.
+
+* **Eje de Lógica, Bases de Datos y Sistemas (Prof. Arcides Canales):**
+  * Modelado, diseño e implementación de bases de datos relacionales.
+  * Desarrollo de lógica de programación aplicada, estructura de software empresarial y gestión de módulos de sistemas.
+  * Verificación de instrumentos técnicos: guías de aprendizaje, rúbricas, listas de cotejo y documentación de proyectos.
 
 ---
 
 ## 🌐 Enlace de Despliegue y Versión
 
 * **URL Pública en GitHub Pages:** [https://nicolejesy.github.io/hub-3ds-a/](https://nicolejesy.github.io/hub-3ds-a/)[cite: 1]
-* **Versión:** `v0.2` (Día 1 — Cimientos del HUB)[cite: 3, 4]
+* **Versión:** `v0.2` (Día 1 — Cimientos del HUB)
 
 ---
 
 ## ⚡ Características Principales
 
-* 🎯 **Renderizado Dinámico:** Generación de tarjetas y fichas de módulos a partir de estructuras de datos en JavaScript (`data/modulos.js`)[cite: 3].
-* 📱 **Diseño Responsivo e Intuitivo:** Interfaz adaptada a dispositivos móviles y monitores de escritorio[cite: 3].
-* 📚 **Fichas Técnicas Completas:** Información detallada sobre programas, herramientas, instrumentos de evaluación y recursos educativos[cite: 3].
+* 🎯 **Renderizado Dinámico:** Generación automática de tarjetas y fichas técnicas a partir de arreglos y objetos JavaScript (`data/modulos.js`).
+* 📱 **Diseño Responsivo e Intuitivo:** Interfaz optimizada para su visualización en dispositivos móviles y monitores de escritorio.
+* 📚 **Fichas Técnicas Integrales:** Consulta detallada de programas, herramientas, recursos verificados, evidencias y quices de repaso por cada módulo.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-* **HTML5:** Maquetación semántica y accesible[cite: 3].
-* **CSS3:** Estilos personalizados, arquitectura limpia y diseño responsivo[cite: 3].
-* **JavaScript (ES6+):** Manipulación del DOM y lógica de renderizado desde datos[cite: 3].
-* **Control de Versiones:** Git, GitHub y despliegue automático mediante GitHub Pages[cite: 3].
+* **HTML5:** Estructuración semántica y estándares de accesibilidad[cite: 3].
+* **CSS3:** Estilos personalizados, arquitectura limpia y maquetación adaptativa[cite: 3].
+* **JavaScript (ES6+):** Programación orientada a eventos, manipulación del DOM y procesamiento de datos.
+* **Control de Versiones:** Git, repositorio remoto en GitHub y despliegue continuo mediante GitHub Pages.
 
 ---
-
 ## 👥 Equipo de Trabajo y Roles
 
 | Integrante | Rol Asignado |
