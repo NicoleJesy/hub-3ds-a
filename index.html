@@ -1,35 +1,401 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-tema="oscuro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUB 3DS-A · Portal de Repaso</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <meta name="description" content="Memoria 3DSA: portal de repaso de los ocho módulos del 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A» del Instituto Nacional Cantón Lourdes (INDEL)." />
+  <meta property="og:title" content="Memoria 3DSA — Todo el año, módulo por módulo" />
+  <meta property="og:description" content="Repaso de los 8 módulos del 3.º DS «A» del INDEL: qué aprendimos, con qué herramientas y dónde seguir aprendiendo." />
+  <meta property="og:type" content="website" />
+
+  <title>Memoria 3DSA — Repaso de los 8 módulos</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e1a'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' font-style='italic' fill='%23e8b14a' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <!-- Marca la página como "con JS" para que las animaciones de entrada no oculten
+       contenido cuando JavaScript está desactivado. -->
+  <script>document.documentElement.classList.add("js");</script>
 </head>
+
 <body>
-  <header>
-    <div class="wrap">
-      <h1>HUB 3DS·A</h1>
-      <p>Repaso Integral del Año · 3.º Bachillerato Desarrollo de Software «A»</p>
+  <a class="enlace-saltar" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- ============================================================
+       CABECERA
+       ============================================================ -->
+  <header class="cabecera" id="cabecera">
+    <div class="contenedor cabecera-contenido">
+      <a class="marca" href="#inicio" aria-label="Memoria 3DSA — volver al inicio">
+        <span class="marca-simbolo" aria-hidden="true">M</span>
+        <span class="marca-texto">Memoria <span class="marca-anio">3DSA</span></span>
+      </a>
+
+      <nav class="navegacion" aria-label="Navegación principal">
+        <a href="#inicio" class="navegacion-enlace">Inicio</a>
+        <a href="#modulos" class="navegacion-enlace">Módulos</a>
+        <a href="#proyectos" class="navegacion-enlace">Proyectos</a>
+        <a href="#acerca" class="navegacion-enlace">Acerca</a>
+      </nav>
+
+      <a class="cabecera-accion" href="#modulos">
+        Explorar
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   </header>
 
-  <main class="wrap">
-    <section>
-      <h2>Mapa de Módulos</h2>
-      <div id="lista-modulos" class="grid-modulos">
-        <!-- JS pintará las tarjetas dinámicamente -->
+  <main id="contenido">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="heroe" id="inicio" aria-labelledby="heroe-titulo">
+      <div class="contenedor heroe-grid">
+        <div class="heroe-principal">
+          <p class="etiqueta revelar">INDEL · 3.º DS «A» · 2026</p>
+
+          <h1 class="heroe-titulo revelar" id="heroe-titulo" style="--retraso: 70ms">
+            Todo el año,
+            <em>módulo por módulo.</em>
+          </h1>
+
+          <p class="heroe-descripcion revelar" style="--retraso: 140ms">
+            Un archivo vivo del 3.º Bachillerato Técnico Vocacional en Desarrollo
+            de Software: lo que aprendimos, con qué lo hicimos y dónde seguir
+            creciendo después de clases.
+          </p>
+
+          <div class="heroe-acciones revelar" style="--retraso: 210ms">
+            <a class="boton boton-primario" href="#modulos">
+              Explorar los 8 módulos
+              <span class="boton-flecha" aria-hidden="true">→</span>
+            </a>
+            <a class="boton boton-fantasma" href="#proyectos">Ver proyectos</a>
+          </div>
+
+          <ul class="insignias revelar" style="--retraso: 280ms" aria-label="Datos del portal">
+            <li class="insignia"><span class="insignia-punto" aria-hidden="true"></span>Año 2026</li>
+            <li class="insignia"><span class="insignia-punto" aria-hidden="true"></span>Desarrollo de Software</li>
+            <li class="insignia"><span class="insignia-punto" aria-hidden="true"></span>Instituto Nacional Cantón Lourdes</li>
+          </ul>
+        </div>
+
+        <div class="heroe-indice revelar" style="--retraso: 350ms">
+          <p class="heroe-indice-titulo">El año en números</p>
+          <dl class="heroe-estadisticas">
+            <div class="heroe-estadistica">
+              <dt class="heroe-estadistica-etiqueta">Módulos</dt>
+              <dd class="heroe-estadistica-valor" data-total-modulos>08</dd>
+            </div>
+            <div class="heroe-estadistica">
+              <dt class="heroe-estadistica-etiqueta">Docentes</dt>
+              <dd class="heroe-estadistica-valor" data-total-docentes>02</dd>
+            </div>
+            <div class="heroe-estadistica">
+              <dt class="heroe-estadistica-etiqueta">Proyectos</dt>
+              <dd class="heroe-estadistica-valor">04</dd>
+            </div>
+          </dl>
+          <p class="heroe-indice-nota">
+            Un recorrido por la especialidad,<br />
+            de la lógica al prototipo.
+          </p>
+        </div>
+      </div>
+
+      <div class="contenedor">
+        <div class="linea-decorativa" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MÓDULOS
+         ============================================================ -->
+    <section class="seccion" id="modulos" aria-labelledby="modulos-titulo">
+      <div class="contenedor">
+        <div class="seccion-cabecera revelar">
+          <p class="etiqueta">
+            <span class="etiqueta-numero">01</span>
+            Módulos
+          </p>
+          <div class="seccion-cabecera-fila">
+            <h2 class="seccion-titulo" id="modulos-titulo">
+              Los ocho módulos <em>del año</em>
+            </h2>
+            <p class="seccion-descripcion">
+              Cada ficha reúne el resumen, los instrumentos de evaluación, los
+              programas, las herramientas y recursos para seguir practicando.
+            </p>
+          </div>
+        </div>
+
+        <!-- El grid se pinta desde data/modulos.js -->
+        <div class="grid-modulos" id="grid-modulos" aria-busy="true"></div>
+
+        <!-- Aviso para cuando el sitio se abre con file:// (los módulos ES
+             necesitan un servidor). -->
+        <div class="aviso-carga" id="aviso-carga" hidden>
+          <p class="aviso-carga-titulo">Abre el portal con un servidor local</p>
+          <p>
+            Este proyecto usa módulos de JavaScript, así que necesita servirse por
+            HTTP. En VS Code usa <strong>Live Server</strong>; también puedes
+            ejecutar <code>python -m http.server</code> en la carpeta del proyecto.
+            En GitHub Pages funcionará sin configuración adicional.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="aviso-carga">
+            <p class="aviso-carga-titulo">JavaScript está desactivado</p>
+            <p>
+              Activa JavaScript para ver las tarjetas y las fichas de los módulos.
+              El contenido también está disponible en <code>data/modulos.js</code>.
+            </p>
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROYECTOS
+         ============================================================ -->
+    <section class="seccion" id="proyectos" aria-labelledby="proyectos-titulo">
+      <div class="contenedor">
+        <div class="seccion-cabecera revelar">
+          <p class="etiqueta">
+            <span class="etiqueta-numero">02</span>
+            Proyectos destacados
+          </p>
+          <div class="seccion-cabecera-fila">
+            <h2 class="seccion-titulo" id="proyectos-titulo">
+              Lo que <em>construimos</em>
+            </h2>
+            <p class="seccion-descripcion">
+              Cuatro entregas que cruzaron varios módulos y terminaron en algo que
+              se puede tocar, probar y mostrar.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-proyectos">
+          <article class="tarjeta-proyecto revelar" style="--retraso: 0ms">
+            <div class="proyecto-cabecera">
+              <span class="proyecto-indice">P.01</span>
+              <span class="proyecto-tipo">Sistema de información</span>
+            </div>
+            <h3 class="proyecto-titulo">Vivero «La Marchita»</h3>
+            <p class="proyecto-descripcion">
+              Sistema de gestión completo: requerimientos, modelo UML, base de
+              datos relacional y manual funcional para el vivero.
+            </p>
+            <ul class="proyecto-etiquetas" aria-label="Módulos relacionados">
+              <li>Bases de datos</li>
+              <li>UML</li>
+              <li>Documentación</li>
+            </ul>
+          </article>
+
+          <article class="tarjeta-proyecto revelar" style="--retraso: 80ms">
+            <div class="proyecto-cabecera">
+              <span class="proyecto-indice">P.02</span>
+              <span class="proyecto-tipo">Comercio electrónico</span>
+            </div>
+            <h3 class="proyecto-titulo">Tienda E-commerce PrestaShop</h3>
+            <p class="proyecto-descripcion">
+              Catálogo, carrito y administración sobre PrestaShop, con una capa de
+              personalización web y conexión a base de datos.
+            </p>
+            <ul class="proyecto-etiquetas" aria-label="Módulos relacionados">
+              <li>Web</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+            </ul>
+          </article>
+
+          <article class="tarjeta-proyecto revelar" style="--retraso: 160ms">
+            <div class="proyecto-cabecera">
+              <span class="proyecto-indice">P.03</span>
+              <span class="proyecto-tipo">Robótica</span>
+            </div>
+            <h3 class="proyecto-titulo">Vehículo 4WD Autónomo</h3>
+            <p class="proyecto-descripcion">
+              Chasis 4WD con Arduino Uno, driver L298N y sensores de flama: el
+              prototipo detecta y se desplaza hacia el objetivo.
+            </p>
+            <ul class="proyecto-etiquetas" aria-label="Módulos relacionados">
+              <li>Arduino</li>
+              <li>Sensores</li>
+              <li>C++</li>
+            </ul>
+          </article>
+
+          <article class="tarjeta-proyecto revelar" style="--retraso: 240ms">
+            <div class="proyecto-cabecera">
+              <span class="proyecto-indice">P.04</span>
+              <span class="proyecto-tipo">Visión artificial</span>
+            </div>
+            <h3 class="proyecto-titulo">Circuito LED con Visión Artificial</h3>
+            <p class="proyecto-descripcion">
+              Los gestos de la mano, detectados con OpenCV y MediaPipe, encienden
+              y apagan un circuito LED físico en tiempo real.
+            </p>
+            <ul class="proyecto-etiquetas" aria-label="Módulos relacionados">
+              <li>Python</li>
+              <li>OpenCV</li>
+              <li>MediaPipe</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACERCA
+         ============================================================ -->
+    <section class="seccion seccion-acerca" id="acerca" aria-labelledby="acerca-titulo">
+      <div class="contenedor">
+        <div class="seccion-cabecera revelar">
+          <p class="etiqueta">
+            <span class="etiqueta-numero">03</span>
+            Acerca
+          </p>
+          <div class="seccion-cabecera-fila">
+            <h2 class="seccion-titulo" id="acerca-titulo">
+              Un repaso <em>para todos</em>
+            </h2>
+            <p class="seccion-descripcion">
+              Este portal nació para que ningún compañero se quede atrás: todo el
+              año concentrado en un solo lugar, abierto y sin costo.
+            </p>
+          </div>
+        </div>
+
+        <div class="acerca-grid">
+          <blockquote class="acerca-cita revelar">
+            <p>«Aprender es poder <em>explicarlo</em>.»</p>
+            <footer>Profesor Javier Arturo García Mineros</footer>
+          </blockquote>
+
+          <div class="acerca-texto revelar" style="--retraso: 100ms">
+            <p>
+              <strong>Memoria 3DSA</strong> reúne los ocho módulos de la
+              especialidad con un lenguaje claro: qué se trabajó, con qué
+              programas, cómo se evaluó y qué recursos sirven para seguir
+              practicando desde casa.
+            </p>
+            <p>
+              Es un proyecto estático —HTML, CSS y JavaScript puro— pensado para
+              publicarse en GitHub Pages. Cada ficha abre en un modal, incluye un
+              quiz de repaso y enlaza documentación oficial de las herramientas
+              que usamos en clase.
+            </p>
+
+            <div class="acerca-docentes">
+              <p class="acerca-subtitulo">Docentes del año</p>
+              <ul class="lista-docentes">
+                <li><span class="docente-monograma" aria-hidden="true">JM</span> Javier Mineros</li>
+                <li><span class="docente-monograma" aria-hidden="true">AC</span> Arcides Canales</li>
+              </ul>
+            </div>
+
+            <div class="acerca-proximamente">
+              <p class="acerca-subtitulo">Próximamente</p>
+              <ul class="chips-proximamente" aria-label="Funciones planeadas para las próximas versiones">
+                <li class="proximamente">Buscador<span class="visualmente-oculto"> (próximamente)</span></li>
+                <li class="proximamente">Progreso guardado<span class="visualmente-oculto"> (próximamente)</span></li>
+                <li class="proximamente">Quiz interactivo<span class="visualmente-oculto"> (próximamente)</span></li>
+                <li class="proximamente">Modo claro<span class="visualmente-oculto"> (próximamente)</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <p>INDEL · Desarrollo de Software</p>
+  <!-- ============================================================
+       PIE DE PÁGINA
+       ============================================================ -->
+  <footer class="pie" aria-labelledby="pie-titulo">
+    <div class="contenedor">
+      <div class="pie-superior">
+        <div class="pie-marca">
+          <a class="marca" href="#inicio" aria-label="Memoria 3DSA — volver al inicio">
+            <span class="marca-simbolo" aria-hidden="true">M</span>
+            <span class="marca-texto">Memoria <span class="marca-anio">3DSA</span></span>
+          </a>
+          <p class="pie-lema">El año, módulo por módulo.</p>
+        </div>
+
+        <nav class="pie-navegacion" aria-label="Navegación del pie de página">
+          <a href="#modulos">Módulos</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#acerca">Acerca</a>
+          <a href="#inicio">Volver arriba ↑</a>
+        </nav>
+      </div>
+
+      <div class="pie-inferior">
+        <p id="pie-titulo" class="pie-creditos">
+          Elaborado por el profesor <strong>Javier Arturo García Mineros</strong> ·
+          Instituto Nacional Cantón Lourdes (INDEL) · 3.º Desarrollo de Software «A» · 2026
+        </p>
+        <p class="pie-tecnico">
+          <span>HTML · CSS · JavaScript</span>
+          <span class="pie-version">v0.2</span>
+        </p>
+      </div>
     </div>
   </footer>
 
-  <script src="data/modulos.js"></script>
-  <script src="app.js"></script>
+  <!-- ============================================================
+       MODAL DE FICHA (contenido generado por app.js)
+       ============================================================ -->
+  <dialog class="modal-ficha" id="modal-ficha" aria-labelledby="modal-titulo">
+    <div class="modal-panel">
+      <div class="modal-cabecera">
+        <span class="modal-icono" id="modal-icono" role="img" aria-label="Icono del módulo"></span>
+        <div class="modal-titular">
+          <p class="etiqueta modal-docente" id="modal-docente"></p>
+          <h2 class="modal-titulo" id="modal-titulo"></h2>
+        </div>
+        <button class="modal-cerrar" id="modal-cerrar" type="button" aria-label="Cerrar la ficha del módulo">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-cuerpo" id="modal-cuerpo"></div>
+    </div>
+  </dialog>
+
+  <script type="module" src="scripts/app.js"></script>
+
+  <!-- Aviso de respaldo: si el módulo ES no cargó (por ejemplo, al abrir el
+       archivo con file://), se muestra una ayuda en lugar de una página vacía. -->
+  <script>
+    window.addEventListener("load", function () {
+      window.setTimeout(function () {
+        var grid = document.getElementById("grid-modulos");
+        var aviso = document.getElementById("aviso-carga");
+        if (grid && aviso && !window.MEMORIA_3DSA_OK) {
+          aviso.hidden = false;
+          grid.setAttribute("aria-busy", "false");
+        }
+      }, 1200);
+    });
+  </script>
 </body>
 </html>
