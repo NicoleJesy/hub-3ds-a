@@ -1,62 +1,63 @@
- 🚀HUB 3DS·A — Portal del Año
+# 🚀 Memoria 3DSA — Portal del Año
 
-> **Instituto Nacional Cantón Lourdes (INDEL)**[cite: 3]  
-> **Especialidad:** 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A»[cite: 3]  
-> **Asignatura:** Repaso Integral del Año Lectivo[cite: 3]
+> **Instituto Nacional Cantón Lourdes (INDEL)**[cite: 7, 8]  
+> **Especialidad:** 3.º Bachillerato Técnico Vocacional en Desarrollo de Software «A»[cite: 7, 8]  
+> **Docentes:** Prof. Javier Arturo García Mineros & Prof. Arcides Canales[cite: 7, 8]
 
 ---
 
-## 📌 Descripción del Proyecto e Introducción Académica
+## 📌 Descripción del Proyecto
 
-El **HUB 3DS·A** es un portal web educativo estático, dinámico e interactivo diseñado para recopilar, estructurar y repasar centralizadamente los conocimientos, proyectos y competencias adquiridas durante el año académico[cite: 3].
+**Memoria 3DSA** es un portal web estático, dinámico e interactivo diseñado como un archivo vivo de repaso de los 8 módulos cursados durante el año académico[cite: 7, 8]. 
 
-El contenido del portal sintetiza la ruta formativa de los módulos técnicos impartidos por los docentes de la especialidad[cite: 3]:
-
-* **Eje de Desarrollo Web, Frontend y Gestión de Proyectos (Prof. Javier Mineros):**[cite: 3]
-  * Maquetación semántica y accesible mediante HTML5, junto con diseño adaptable (*responsive*) en CSS3[cite: 3].
-  * Lógica de programación web con JavaScript (ES6+): manipulación del DOM, recorrido de datos e interactividad[cite: 3].
-  * Control de versiones colaborativo con Git y GitHub: flujo de trabajo en equipo, etiquetas de versión (`v0.2`, `v0.5`, `v1.0`), resolución de conflictos y publicación en GitHub Pages.
-
-* **Eje de Lógica, Bases de Datos y Sistemas (Prof. Arcides Canales):**
-  * Modelado, diseño e implementación de bases de datos relacionales.
-  * Desarrollo de lógica de programación aplicada, estructura de software empresarial y gestión de módulos de sistemas.
-  * Verificación de instrumentos técnicos: guías de aprendizaje, rúbricas, listas de cotejo y documentación de proyectos.
+El sitio centraliza y sintetiza los aprendizajes, el software instalado, las herramientas utilizadas, los instrumentos de evaluación, los recursos oficiales y las evidencias de los proyectos desarrollados tanto en el eje de Desarrollo de Software (Prof. Javier Mineros) como en el de Hardware, Redes y Robótica (Prof. Arcides Canales)[cite: 7, 8].
 
 ---
 
 ## 🌐 Enlace de Despliegue y Versión
 
-* **URL Pública en GitHub Pages:** [https://nicolejesy.github.io/hub-3ds-a/](https://nicolejesy.github.io/hub-3ds-a/)[cite: 1]
-* **Versión:** `v0.2` (Día 1 — Cimientos del HUB)
+* **URL Pública (GitHub Pages):** [https://nicolejesy.github.io/hub-3ds-a/](https://nicolejesy.github.io/hub-3ds-a/)[cite: 1]
+* **Versión Actual:** `v0.2` (Día 1 — Cimientos del HUB)[cite: 3, 4]
 
 ---
 
-## ⚡ Características Principales
+## ✨ Características Principales
 
-* 🎯 **Renderizado Dinámico:** Generación automática de tarjetas y fichas técnicas a partir de arreglos y objetos JavaScript (`data/modulos.js`).
-* 📱 **Diseño Responsivo e Intuitivo:** Interfaz optimizada para su visualización en dispositivos móviles y monitores de escritorio.
-* 📚 **Fichas Técnicas Integrales:** Consulta detallada de programas, herramientas, recursos verificados, evidencias y quices de repaso por cada módulo.
+* 🎨 **Diseño Editorial Dark Premium:** Sistema de diseño oscuro con tipografía editorial (*Fraunces* e *Inter*), tarjetas interactivas y animaciones escalonadas[cite: 7, 8].
+* ⚡ **Renderizado Dinámico:** Generación de las tarjetas de los 8 módulos en tiempo real desde el archivo `data/modulos.js`[cite: 7, 8].
+* 🗂️ **Modal Accesible:** Fichas desplegables (`<dialog>`) con resumen, aprendizajes clave, programas, herramientas, enlaces verificados y quiz de lectura[cite: 7, 8].
+* 🏆 **Proyectos Destacados:** Sección con entregas integradoras como *Vivero «La Marchita»*, *Tienda E-commerce PrestaShop*, *Vehículo 4WD Autónomo* y *Circuito LED con Visión Artificial*[cite: 7, 8].
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-* **HTML5:** Estructuración semántica y estándares de accesibilidad[cite: 3].
-* **CSS3:** Estilos personalizados, arquitectura limpia y maquetación adaptativa[cite: 3].
-* **JavaScript (ES6+):** Programación orientada a eventos, manipulación del DOM y procesamiento de datos.
-* **Control de Versiones:** Git, repositorio remoto en GitHub y despliegue continuo mediante GitHub Pages.
+* **HTML5:** Maquetación semántica y estándares de accesibilidad (`aria-*`, navegación por teclado)[cite: 7, 8].
+* **CSS3:** Custom properties, CSS Grid, Flexbox, animaciones con `IntersectionObserver` y diseño responsivo adaptado a móviles y escritorios[cite: 7, 8].
+* **JavaScript (ES6+):** Módulos nativos, manipulación del DOM, control del flujo de foco y lógica de ventanas modales[cite: 7, 8].
+* **Control de Versiones:** Git, repositorio remoto en GitHub y despliegue automático en GitHub Pages[cite: 7, 8].
 
 ---
+
 ## 👥 Equipo de Trabajo y Roles
 
-| Integrante | Rol Asignado |
-| :--- | :--- |
-| **Nicole Hernández** | Líder Git / QA y Accesibilidad |
-| **Eileen Henríquez** | Diseñadora UI |
-| **Jonathan García** | Curador de Contenido[cite: 4] |
+| Integrante | Rol Principal | Aportes |
+| :--- | :--- | :--- |
+| **Nicole Hernández** | Líder Git / QA y Accesibilidad[cite: 4] | Control de versiones, pruebas de contraste, navegación por teclado y documentación[cite: 8]. |
+| **Eileen Henríquez** | Diseñadora UI / Frontend[cite: 4] | Maquetación HTML, sistema visual en CSS, hero y componentes de tarjetas[cite: 8]. |
+| **Jonathan García** | Curador de Contenido[cite: 4] | Estructura de datos, redacción de resúmenes de módulos, evidencias y enlaces[cite: 8]. |
 
 ---
 
-## 🤖 Registro de Prompts de IA
+## 📂 Estructura del Repositorio
 
-* **Prompt 1:** [Registra aquí la indicación o consulta principal utilizada con asistencia de IA][cite: 3]
+```text
+Memoria_3DSA/
+├── index.html          → Estructura semántica principal
+├── styles/
+│   └── main.css        → Variables CSS, componentes, animaciones y responsive
+├── scripts/
+│   └── app.js          → Renderizado dinámico, modal accesible y navegación
+├── data/
+│   └── modulos.js      → Fuente de datos de los 8 módulos del año
+└── README.md           → Documentación oficial del proyecto
