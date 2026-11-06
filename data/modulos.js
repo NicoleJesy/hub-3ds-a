@@ -13,11 +13,13 @@
       'Valorar la organización y el compromiso como parte del aprendizaje.'
     ],
     instrumentos: ['Actividades de reflexión', 'Guías de orientación'],
-    programas: ['Materiales de apoyo educativo'],
-    herramientas: ['Trabajo individual y colaborativo'],
+    programas: ['Materiales de apoyo educativo', 'Herramientas de orientación escolar'],
+    herramientas: ['Trabajo individual y colaborativo', 'Autoevaluación y metas'],
     keywords: ['BTVD3 3.0', 'orientacion', 'estudiantes', 'proceso educativo'],
     recursos: [
-      { nombre: 'UNESCO — Educación', url: 'https://www.unesco.org/es/education' }
+      { nombre: 'UNESCO — Educación', url: 'https://www.unesco.org/es/education' },
+      { nombre: 'UNICEF — Educación', url: 'https://www.unicef.org/education' },
+      { nombre: 'OEI — Educación en Iberoamérica', url: 'https://www.oei.int/' }
     ],
     evidencias: ['Actividades y reflexiones desarrolladas durante el módulo.'],
     quiz: [
@@ -26,6 +28,18 @@
         opciones: ['El compromiso con el aprendizaje', 'Evitar las actividades', 'Dejar toda la responsabilidad al docente'],
         correcta: 0,
         explicacion: 'La participación y el compromiso ayudan a aprovechar mejor la formación.'
+      },
+      {
+        pregunta: '¿Por qué es importante conocer tus responsabilidades como estudiante?',
+        opciones: ['Para organizar mejor el estudio', 'Para evitar participar', 'Porque el docente hace todo'],
+        correcta: 0,
+        explicacion: 'Conocer las responsabilidades permite organizar el tiempo y participar con propósito.'
+      },
+      {
+        pregunta: '¿Cuál es una buena práctica para fortalecer tu formación técnica?',
+        opciones: ['Participar en las actividades', 'Ignorar las indicaciones', 'Trabajar solo cuando sea obligatorio'],
+        correcta: 0,
+        explicacion: 'La participación constante fortalece las competencias y la confianza en el aprendizaje.'
       }
     ]
   },
@@ -307,12 +321,13 @@
       'Presentar y explicar la solución construida.'
     ],
     instrumentos: ['Propuesta de proyecto', 'Presentación del proyecto'],
-    programas: ['Herramientas de desarrollo de software'],
+    programas: ['Herramientas de desarrollo de software', 'Plataforma de presentaciones'],
     herramientas: ['Planificación de proyectos', 'Diseño y programación de software'],
     keywords: ['BTVD3 3.8', 'proyecto innovador', 'desarrollo de software', 'solucion', 'prototipo'],
     recursos: [
       { nombre: 'MDN — Learn web development', url: 'https://developer.mozilla.org/es/docs/Learn' },
-      { nombre: 'GitHub Skills', url: 'https://skills.github.com/' }
+      { nombre: 'GitHub Skills', url: 'https://skills.github.com/' },
+      { nombre: 'OpenAI — Desarrollo de ideas', url: 'https://openai.com/' }
     ],
     evidencias: ['Propuesta y presentación del proyecto innovador de software.'],
     quiz: [
@@ -321,6 +336,18 @@
         opciones: ['Identificar una necesidad o problema', 'Elegir colores antes de conocer el propósito', 'Escribir código sin planificar'],
         correcta: 0,
         explicacion: 'Comprender la necesidad permite definir el propósito y orientar el desarrollo de la solución.'
+      },
+      {
+        pregunta: '¿Qué etapa ayuda a reducir riesgos antes de programar?',
+        opciones: ['La planificación y el diseño', 'Comprar hardware', 'Publicar sin pruebas'],
+        correcta: 0,
+        explicacion: 'Planificar y diseñar orienta el trabajo y evita cambios costosos durante la implementación.'
+      },
+      {
+        pregunta: '¿Cuál es un buen criterio para presentar el proyecto?',
+        opciones: ['Explicar el problema, la solución y cómo se hizo', 'Solo mostrar colores', 'Ocultar dificultades'],
+        correcta: 0,
+        explicacion: 'Una buena presentación comunica la necesidad, la solución construida y el proceso del equipo.'
       }
     ]
   },
@@ -338,11 +365,13 @@
       'Identificar elementos básicos para poner en marcha una iniciativa productiva.'
     ],
     instrumentos: ['Guías de trabajo', 'Actividades de planificación'],
-    programas: ['Herramientas de planificación y presentación'],
+    programas: ['Herramientas de planificación y presentación', 'Editor de documentos'],
     herramientas: ['Trabajo asociativo', 'Planificación de iniciativas'],
     keywords: ['BTVD3 3.7', 'microempresa', 'asociatividad', 'cooperativa', 'emprendimiento'],
     recursos: [
-      { nombre: 'OIT — Cooperativas', url: 'https://www.ilo.org/es/temas-y-sectores/cooperativas' }
+      { nombre: 'OIT — Cooperativas', url: 'https://www.ilo.org/es/temas-y-sectores/cooperativas' },
+      { nombre: 'PNUD — Emprendimiento', url: 'https://www.undp.org/es' },
+      { nombre: 'BID — Innovación social', url: 'https://www.iadb.org/es' }
     ],
     evidencias: ['Actividades de organización y planificación de una iniciativa microempresarial.'],
     quiz: [
@@ -351,6 +380,18 @@
         opciones: ['La colaboración para alcanzar objetivos comunes', 'El trabajo aislado', 'Evitar la planificación'],
         correcta: 0,
         explicacion: 'La asociatividad cooperativa se basa en la colaboración y la organización de sus integrantes.'
+      },
+      {
+        pregunta: '¿Cuál es una ventaja del trabajo asociativo en una microempresa?',
+        opciones: ['Compartir recursos y responsabilidades', 'Depender de una sola persona', 'Evitar acuerdos'],
+        correcta: 0,
+        explicacion: 'El trabajo asociativo permite sumar capacidades y distribuir mejor las tareas.'
+      },
+      {
+        pregunta: '¿Qué debe existir antes de poner en marcha la microempresa?',
+        opciones: ['Una planificación básica y organización del equipo', 'Una idea sin revisar', 'Gastos sin control'],
+        correcta: 0,
+        explicacion: 'La planificación y la organización son indispensables para iniciar de manera responsable.'
       }
     ]
   }
