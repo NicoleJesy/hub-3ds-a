@@ -69,7 +69,23 @@ const guardarProgreso = () => {
   }
 };
 
-estado.repasados = leerProgreso();
+const quizKey = (id) => `hub-3dsa:quiz:${id}`;
+const leerMejorQuiz = (id) => {
+  try {
+    const valor = localStorage.getItem(quizKey(id));
+    return valor === null ? null : Number(valor);
+  } catch {
+    return null;
+  }
+};
+const guardarMejorQuiz = (id, puntaje) => {
+  try {
+    localStorage.setItem(quizKey(id), String(puntaje));
+  } catch {
+    // Ignorar bloqueos de almacenamiento.
+  }
+};
+const quizState = {};
 
 const grid = document.querySelector("#grid-modulos");
 const modal = document.querySelector("#modal-ficha");
@@ -319,7 +335,7 @@ const crearContenidoFicha = (modulo) => {
   const quiz = (modulo.quiz || [])
     .map(
       (pregunta, indice) => `
-        <li class="quiz-pregunta">
+        <li class="quiz-pregunta" data-pregunta="${indice}">
           <p class="quiz-enunciado">
             <span class="quiz-numero" aria-hidden="true">${dosDigitos(indice + 1)}</span>
             <span>${escaparHTML(pregunta.pregunta)}</span>
@@ -329,24 +345,24 @@ const crearContenidoFicha = (modulo) => {
               .map(
                 (opcion, posicion) => `
                   <li>
-                    <span class="opcion-letra" aria-hidden="true">${letras[posicion] || posicion + 1}</span>
-                    <span>${escaparHTML(opcion)}</span>
+                    <button class="quiz-opcion" type="button"
+                            data-pregunta="${indice}" data-opcion="${posicion}"
+                            aria-label="Opción ${letras[posicion] || posicion + 1}: ${escaparHTML(opcion)}">
+                      <span class="opcion-letra" aria-hidden="true">${letras[posicion] || posicion + 1}</span>
+                      <span>${escaparHTML(opcion)}</span>
+                    </button>
                   </li>`
               )
               .join("")}
           </ul>
-          <details class="quiz-respuesta">
-            <summary>Ver respuesta y explicación</summary>
-            <p>
-              <strong>Respuesta ${letras[pregunta.correcta] || pregunta.correcta + 1}.</strong>
-              ${escaparHTML(pregunta.explicacion)}
-            </p>
-          </details>
+          <p class="quiz-feedback" aria-live="polite" hidden></p>
         </li>`
     )
     .join("");
 
   const estaRepasado = Boolean(estado.repasados[modulo.id]);
+  const mejorQuiz = leerMejorQuiz(modulo.id);
+  const quizMejorTexto = mejorQuiz === null ? "Sin intentos todavía" : `${mejorQuiz} de ${(modulo.quiz || []).length}`;
 
   return `
     <div class="modal-acciones">
@@ -381,14 +397,18 @@ const crearContenidoFicha = (modulo) => {
     ${crearSeccion(
       "Quiz de repaso",
       `<ol class="quiz-lista">${quiz}</ol>
-       <p class="quiz-nota">Versión de lectura: el quiz interactivo con
-       retroalimentación llega en la próxima actualización.</p>`
+       <div class="quiz-resumen" data-quiz-resumen>
+         <p class="quiz-puntaje" data-quiz-puntaje>Respondidas: 0 de ${(modulo.quiz || []).length} · Aciertos: 0</p>
+         <p class="quiz-mejor" data-quiz-mejor>Mejor puntaje: ${quizMejorTexto}</p>
+         <button class="boton-quiz-reiniciar" type="button" data-quiz-reiniciar>Reiniciar quiz</button>
+       </div>`
     )}`;
 };
 
 function rellenarFicha(modulo) {
   if (!modal) return;
 
+  modal.dataset.moduloId = modulo.id;
   modal.style.setProperty("--acento-modulo", colorSeguro(modulo.color));
 
   const icono = modal.querySelector("#modal-icono");
@@ -402,7 +422,10 @@ function rellenarFicha(modulo) {
   }
   if (titulo) titulo.textContent = modulo.nombre;
   if (docente) docente.textContent = `Docente · ${modulo.docente}`;
-  if (cuerpo) cuerpo.innerHTML = crearContenidoFicha(modulo);
+  if (cuerpo) {
+    cuerpo.innerHTML = crearContenidoFicha(modulo);
+    inicializarQuiz(modulo);
+  }
 }
 
 let disparadorActivo = null;
@@ -411,6 +434,94 @@ const bloquearScroll = (bloquear) => {
   document.documentElement.classList.toggle("sin-scroll", bloquear);
   document.body.classList.toggle("sin-scroll", bloquear);
 };
+
+function inicializarQuiz(modulo) {
+  if (!modulo || !Array.isArray(modulo.quiz) || modulo.quiz.length === 0) return;
+  quizState[modulo.id] = {
+    total: modulo.quiz.length,
+    correctas: 0,
+    respondidas: 0,
+    terminado: false,
+  };
+  actualizarResumenQuiz(modulo.id, modulo.quiz.length);
+}
+
+function actualizarResumenQuiz(moduloId, total) {
+  if (!modal || modal.dataset.moduloId !== moduloId) return;
+  const resumen = modal.querySelector("[data-quiz-resumen]");
+  if (!resumen) return;
+  const puntajeEl = resumen.querySelector("[data-quiz-puntaje]");
+  const mejorEl = resumen.querySelector("[data-quiz-mejor]");
+  const estadoQuiz = quizState[moduloId];
+  if (puntajeEl && estadoQuiz) {
+    if (estadoQuiz.terminado) {
+      puntajeEl.textContent = `Puntaje final: ${estadoQuiz.correctas} de ${total}`;
+    } else {
+      puntajeEl.textContent = `Respondidas: ${estadoQuiz.respondidas} de ${total} · Aciertos: ${estadoQuiz.correctas}`;
+    }
+  }
+  if (mejorEl) {
+    const mejor = leerMejorQuiz(moduloId);
+    mejorEl.textContent =
+      mejor === null ? "Mejor puntaje: sin intentos todavía" : `Mejor puntaje: ${mejor} de ${total}`;
+  }
+}
+
+function manejarRespuestaQuiz(boton) {
+  if (!modal) return;
+  const moduloId = modal.dataset.moduloId;
+  const modulo = MODULOS.find((item) => item.id === moduloId);
+  if (!modulo || !modulo.quiz) return;
+
+  const preguntaIndex = Number(boton.dataset.pregunta);
+  const opcionIndex = Number(boton.dataset.opcion);
+  const pregunta = modulo.quiz[preguntaIndex];
+  if (!pregunta) return;
+
+  const preguntaEl = boton.closest(".quiz-pregunta");
+  if (!preguntaEl || preguntaEl.classList.contains("respondida")) return;
+
+  preguntaEl.classList.add("respondida");
+  const botones = preguntaEl.querySelectorAll(".quiz-opcion");
+  botones.forEach((item, indice) => {
+    item.disabled = true;
+    if (indice === pregunta.correcta) item.classList.add("quiz-opcion--correcta");
+    if (indice === opcionIndex && opcionIndex !== pregunta.correcta) {
+      item.classList.add("quiz-opcion--incorrecta");
+    }
+  });
+
+  const feedback = preguntaEl.querySelector(".quiz-feedback");
+  const esCorrecta = opcionIndex === pregunta.correcta;
+  if (feedback) {
+    feedback.hidden = false;
+    feedback.innerHTML = `<strong>${esCorrecta ? "Correcto." : "Incorrecto."}</strong> ${
+      esCorrecta ? "" : `La respuesta correcta es la opción ${letraOpcion(pregunta.correcta)}. `
+    }${escaparHTML(pregunta.explicacion)}`;
+  }
+
+  const estadoQuiz = quizState[moduloId];
+  if (!estadoQuiz) return;
+  estadoQuiz.respondidas += 1;
+  if (esCorrecta) estadoQuiz.correctas += 1;
+
+  if (estadoQuiz.respondidas >= estadoQuiz.total) {
+    estadoQuiz.terminado = true;
+    const puntaje = estadoQuiz.correctas;
+    const mejorPrevio = leerMejorQuiz(moduloId);
+    if (mejorPrevio === null || puntaje > mejorPrevio) guardarMejorQuiz(moduloId, puntaje);
+  }
+  actualizarResumenQuiz(moduloId, modulo.quiz.length);
+}
+
+function letraOpcion(posicion) {
+  return ["a", "b", "c", "d"][posicion] || String(posicion + 1);
+}
+
+function reiniciarQuiz(moduloId) {
+  const modulo = MODULOS.find((item) => item.id === moduloId);
+  if (modulo) rellenarFicha(modulo);
+}
 
 function alternarRepasado(idModulo) {
   const antes = contarRepasados();
@@ -480,6 +591,18 @@ function iniciarModal() {
   modal.querySelector("#modal-cerrar")?.addEventListener("click", cerrarModal);
 
   modal.addEventListener("click", (evento) => {
+    const opcionQuiz = evento.target.closest(".quiz-opcion");
+    if (opcionQuiz) {
+      manejarRespuestaQuiz(opcionQuiz);
+      return;
+    }
+
+    const reinicioQuiz = evento.target.closest("[data-quiz-reiniciar]");
+    if (reinicioQuiz) {
+      reiniciarQuiz(modal.dataset.moduloId);
+      return;
+    }
+
     const toggle = evento.target.closest("[data-toggle-repasado]");
     if (toggle) {
       alternarRepasado(toggle.dataset.modulo);
@@ -614,11 +737,61 @@ function iniciarNavegacionActiva() {
   secciones.forEach((seccion) => observador.observe(seccion));
 }
 
+function iniciarTema() {
+  const boton = document.querySelector("#boton-tema");
+  if (!boton) return;
+
+  const temaActual = () => (document.documentElement.getAttribute("data-tema") === "claro" ? "claro" : "oscuro");
+  const aplicarTema = (tema) => {
+    const esClaro = tema === "claro";
+    document.documentElement.setAttribute("data-tema", esClaro ? "claro" : "oscuro");
+    document.documentElement.style.colorScheme = esClaro ? "light" : "dark";
+
+    const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+    if (metaColorScheme) metaColorScheme.setAttribute("content", esClaro ? "light" : "dark");
+
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) metaTheme.setAttribute("content", esClaro ? "#f7f8fc" : "#0a0e1a");
+
+    const icono = boton.querySelector(".icono-tema");
+    if (icono) icono.textContent = esClaro ? "☀" : "☾";
+    boton.setAttribute("aria-pressed", String(esClaro));
+
+    try {
+      localStorage.setItem("hub-3dsa:tema", tema);
+    } catch {
+      // Ignorar bloqueos de almacenamiento.
+    }
+  };
+
+  aplicarTema(temaActual());
+  boton.addEventListener("click", () => {
+    aplicarTema(temaActual() === "claro" ? "oscuro" : "claro");
+  });
+
+  if (window.matchMedia) {
+    const media = window.matchMedia("(prefers-color-scheme: light)");
+    const onChange = (evento) => {
+      let guardado = null;
+      try {
+        guardado = localStorage.getItem("hub-3dsa:tema");
+      } catch {
+        guardado = null;
+      }
+      if (guardado) return;
+      aplicarTema(evento.matches ? "claro" : "oscuro");
+    };
+    if (typeof media.addEventListener === "function") media.addEventListener("change", onChange);
+    else if (typeof media.addListener === "function") media.addListener(onChange);
+  }
+}
+
 function iniciar() {
   renderModulos();
   iniciarToolbar();
   iniciarTarjetas();
   iniciarModal();
+  iniciarTema();
   iniciarRevelado();
   iniciarCabecera();
   iniciarNavegacionActiva();

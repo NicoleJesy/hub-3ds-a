@@ -20,6 +20,20 @@
 
   <link rel="stylesheet" href="styles/main.css" />
 
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem("hub-3dsa:tema");
+        if (!tema) tema = window.matchMedia("(prefers-color-scheme: light)").matches ? "claro" : "oscuro";
+        document.documentElement.setAttribute("data-tema", tema);
+        document.documentElement.style.colorScheme = tema === "claro" ? "light" : "dark";
+        var cs = document.querySelector('meta[name="color-scheme"]');
+        if (cs) cs.setAttribute("content", tema === "claro" ? "light" : "dark");
+        var tc = document.querySelector('meta[name="theme-color"]');
+        if (tc) tc.setAttribute("content", tema === "claro" ? "#f7f8fc" : "#0a0e1a");
+      } catch (e) {}
+    })();
+  </script>
   <script>document.documentElement.classList.add("js");</script>
 </head>
 
@@ -39,6 +53,11 @@
         <a href="#proyectos" class="navegacion-enlace">Proyectos</a>
         <a href="#acerca" class="navegacion-enlace">Acerca</a>
       </nav>
+
+      <button class="boton-tema" id="boton-tema" type="button"
+              aria-label="Cambiar entre modo claro y oscuro" aria-pressed="false">
+        <span class="icono-tema" aria-hidden="true">☾</span>
+      </button>
 
       <a class="cabecera-accion" href="#modulos">
         Explorar
@@ -365,10 +384,10 @@
             </div>
 
             <div class="acerca-proximamente">
-              <p class="acerca-subtitulo">Próximamente</p>
-              <ul class="chips-proximamente" aria-label="Funciones planeadas para las próximas versiones">
-                <li class="proximamente">Quiz interactivo<span class="visualmente-oculto"> (próximamente)</span></li>
-                <li class="proximamente">Modo claro<span class="visualmente-oculto"> (próximamente)</span></li>
+              <p class="acerca-subtitulo">Funciones disponibles</p>
+              <ul class="chips-proximamente" aria-label="Funciones disponibles en esta versión">
+                <li class="proximamente">Quiz interactivo<span class="visualmente-oculto"> (disponible)</span></li>
+                <li class="proximamente">Modo claro y oscuro<span class="visualmente-oculto"> (disponible)</span></li>
               </ul>
             </div>
           </div>
@@ -403,7 +422,7 @@
         </p>
         <p class="pie-tecnico">
           <span>HTML · CSS · JavaScript</span>
-          <span class="pie-version">v0.5</span>
+          <span class="pie-version">v1.0</span>
         </p>
       </div>
     </div>
